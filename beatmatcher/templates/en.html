@@ -1,0 +1,57 @@
+{% load static %}
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  .page { margin: 1em auto; max-width: 100%; width: 40em; }
+  input, select { padding: 1em; }
+  input[type="text"], input[type="email"] { width: 100%; }
+  table { width: 100%; }
+  td { padding: 1em; vertical-align: top; }
+  .flags { text-align: right; }
+</style>
+<div class="page">
+  <p class="flags">
+    <a href="/en"><img src="{% static "en.png" %}" width="20px"/></a>
+    <a href="/de"><img src="{% static "de.png" %}" width="20px"/></a>
+  </p>
+  <table>
+    <tr>
+      <td>
+        <img src="{% static "speaker.png" %}" width="128px"/>
+      </td>
+      <td width="100%">
+        <p>
+          Welcome to <strong>beatmatcher.org</strong>. We are a new start-up
+          that will provide DJs a place to showcase their work and get hired by
+          venues.
+        </p>
+        <p>
+          If you are a DJ or a venue, please express your interest by providing
+          your email address below.
+        </p>
+        <p>
+          We will notify you about our launch in 2024.
+        </p>
+        <form method="post">
+          {% csrf_token %}
+          <p>
+            <select name="type">
+              <option>Please indicate whether you are a DJ or a venue</option>
+              <option value="dj">I am a DJ</option>
+              <option value="venue">We are a venue</option>
+            </select>
+          </p>
+          <p>
+            <input type="text" maxlength="200" name="name" placeholder="First name or venue name"/>
+          </p>
+          <p>
+            <input type="email" maxlength="200" name="email" placeholder="Email address"/>
+          </p>
+          <p>
+            <input type="submit" value="Keep me in the loop!"/>
+          </p>
+        </form>
+      </td>
+    </tr>
+  </table>
+</div>

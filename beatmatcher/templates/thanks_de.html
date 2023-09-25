@@ -1,0 +1,33 @@
+{% load static %}
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  .page { margin: 1em auto; max-width: 100%; width: 40em; }
+  input, select { padding: 1em; }
+  input[type="text"], input[type="email"] { width: 20em; }
+  table { width: 100%; }
+  td { padding: 1em; }
+  .flags { text-align: right; }
+  .flags a { color: #669; }
+  .spacer { margin: 0 1em; }
+</style>
+<div class="page">
+  <p class="flags">
+    <a href="/">Heim</a>
+    <span class="spacer"></span>
+    <a href="/en/thanks"><img src="{% static "en.png" %}" width="20px"/></a>
+    <a href="/de/thanks"><img src="{% static "de.png" %}" width="20px"/></a>
+  </p>
+  <table>
+    <tr>
+      <td>
+        <img src="{% static "speaker.png" %}" width="128px"/>
+      </td>
+      <td width="100%">
+        <p>
+          Vielen Dank für Ihre Interessensbekundung.
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
