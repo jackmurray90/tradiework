@@ -10,8 +10,16 @@
 <meta property="og:description" content="Connecting DJs and venues" />
 <title>Beatmatcher</title>
 <style>
-  * { box-sizing: border-box; text-size-adjust: none; }
-  html, body { margin: 0; padding: 0; }
+  @font-face {
+    font-family: "Montserrat-Thin";
+    src: url("{% static "Montserrat-Thin.ttf" %}") format("truetype");
+  }
+  @font-face {
+    font-family: "Montserrat-Regular";
+    src: url("{% static "Montserrat-Regular.ttf" %}") format("truetype");
+  }
+  * { font-family: "Montserrat-Regular"; box-sizing: border-box; text-size-adjust: none; }
+  html, body { margin: 0; padding: 0; background-color: rgb(210, 200, 190); }
   .page { margin: 1em auto; max-width: 100%; width: 40em; }
   .mobile { width: 100%; }
   .mobile table p, .mobile input, .mobile, .mobile select { font-size: 40px; }
@@ -22,6 +30,7 @@
   table { width: 100%; }
   td { padding: 1em; vertical-align: top; }
   .flags { text-align: right; margin: 0 1em; }
+  .flags h1 { font-family: "Montserrat-Thin"; float: left; margin: 0; padding: 0; }
 </style>
 <script>
   window.onload = () => {
@@ -40,10 +49,11 @@
   }
 </script>
 <div id="page" class="page">
-  <p class="flags">
+  <div class="flags">
+    <h1>Beatmatcher</h1>
     <a href="/en"><img src="{% static "en.png" %}"/></a>
     <a href="/de"><img src="{% static "de.png" %}"/></a>
-  </p>
+  </div>
   <table>
     <tr>
       <td>
@@ -51,17 +61,22 @@
       </td>
       <td width="100%">
         <p>
-          Welcome to <strong>beatmatcher.org</strong>. We are a new start-up
-          that will provide DJs a place to showcase their work and get hired by
-          venues.
+          Welcome to <strong>beatmatcher.org</strong>. We are a new start-up that provides DJs a place to showcase their work and get hired by clubs.
         </p>
         <p>
-          If you are a DJ or a venue, please express your interest by providing
-          your email address below.
+          DJs can provide their profile, availability, and rate. Then any club can make an instant booking with any DJ on the site.
         </p>
         <p>
-          We are only going to build the site if we get enough interest, so
-          please remember to tell your friends about us!
+          All payment is handled by the website.
+        </p>
+        <p>
+          We also list upcoming events for fans of DJs or clubs. Fans can "follow" a particular DJ or club to see their events.
+        </p>
+        <p>
+          If you are a DJ or a club, please express your interest by providing your email address below.
+        </p>
+        <p>
+          We can only launch if there is enough interest, so please remember to tell your friends about us!
         </p>
         <form method="post">
           {% csrf_token %}
@@ -69,7 +84,11 @@
             <select onchange="placeholders()" id="type" name="type">
               <option>Please select an option</option>
               <option value="dj">I am a DJ</option>
-              <option value="venue">We are a venue</option>
+              <option value="band">We are a band</option>
+              <option value="act">We are a live act</option>
+              <option value="venue">We are a bar/club/venue</option>
+              <option value="festival">We are a festival</option>
+              <option value="event">I am an event organizer</option>
             </select>
           </p>
           <p>

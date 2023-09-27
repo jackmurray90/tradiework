@@ -10,19 +10,28 @@
 <meta property="og:description" content="Connecting DJs and venues" />
 <title>Beatmatcher</title>
 <style>
-  * { box-sizing: border-box; text-size-adjust: none; }
-  html, body { margin: 0; padding: 0; }
+  @font-face {
+    font-family: "Montserrat-Thin";
+    src: url("{% static "Montserrat-Thin.ttf" %}") format("truetype");
+  }
+  @font-face {
+    font-family: "Montserrat-Regular";
+    src: url("{% static "Montserrat-Regular.ttf" %}") format("truetype");
+  }
+  * { font-family: "Montserrat-Regular"; box-sizing: border-box; text-size-adjust: none; }
+  html, body { margin: 0; padding: 0; background-color: rgb(210, 200, 190); }
   .page { margin: 1em auto; max-width: 100%; width: 40em; }
   .mobile { width: 100%; }
-  .mobile table p, .mobile .flags { font-size: 40px; }
-  input, select { padding: 1em; }
-  input[type="text"], input[type="email"] { width: 20em; }
-  table { width: 100%; }
-  td { padding: 1em; }
+  .mobile table p, .mobile input, .mobile, .mobile select { font-size: 40px; }
   .mobile .flags img { width: 80px; }
   .flags img { width: 30px; }
-  .flags { text-align: right; }
-  .flags a { color: #669; }
+  input, select { padding: 1em; }
+  input[type="text"], input[type="email"] { width: 90%; }
+  table { width: 100%; }
+  td { padding: 1em; vertical-align: top; }
+  .flags { text-align: right; margin: 0 1em; }
+  .flags h1 { font-family: "Montserrat-Thin"; float: left; margin: 0; padding: 0; }
+  .flags a { color: #000; }
   .spacer { margin: 0 1em; }
 </style>
 <script>
@@ -35,12 +44,12 @@
   };
 </script>
 <div id="page" class="page">
-  <p class="flags">
+  <div class="flags">
     <a href="/">Heim</a>
     <span class="spacer"></span>
     <a href="/en/thanks"><img src="{% static "en.png" %}"/></a>
     <a href="/de/thanks"><img src="{% static "de.png" %}"/></a>
-  </p>
+  </div>
   <table>
     <tr>
       <td>

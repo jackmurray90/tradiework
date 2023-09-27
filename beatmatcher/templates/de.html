@@ -10,8 +10,16 @@
 <meta property="og:description" content="Connecting DJs and venues" />
 <title>Beatmatcher</title>
 <style>
-  * { box-sizing: border-box; text-size-adjust: none; }
-  html, body { margin: 0; padding: 0; }
+  @font-face {
+    font-family: "Montserrat-Thin";
+    src: url("{% static "Montserrat-Thin.ttf" %}") format("truetype");
+  }
+  @font-face {
+    font-family: "Montserrat-Regular";
+    src: url("{% static "Montserrat-Regular.ttf" %}") format("truetype");
+  }
+  * { font-family: "Montserrat-Regular"; box-sizing: border-box; text-size-adjust: none; }
+  html, body { margin: 0; padding: 0; background-color: rgb(210, 200, 190); }
   .page { margin: 1em auto; max-width: 100%; width: 40em; }
   .mobile { width: 100%; }
   .mobile table p, .mobile input, .mobile, .mobile select { font-size: 40px; }
@@ -22,6 +30,7 @@
   table { width: 100%; }
   td { padding: 1em; vertical-align: top; }
   .flags { text-align: right; margin: 0 1em; }
+  .flags h1 { font-family: "Montserrat-Thin"; float: left; margin: 0; padding: 0; }
 </style>
 <script>
   window.onload = () => {
@@ -40,10 +49,11 @@
   }
 </script>
 <div id="page" class="page">
-  <p class="flags">
+  <div class="flags">
+    <h1>Beatmatcher</h1>
     <a href="/en"><img src="{% static "en.png" %}"/></a>
     <a href="/de"><img src="{% static "de.png" %}"/></a>
-  </p>
+  </div>
   <table>
     <tr>
       <td>
@@ -51,15 +61,22 @@
       </td>
       <td width="100%">
         <p>
-          Willkommen auf <strong>beatmatcher.org</strong>. Wir sind ein neues
-          Jungunternehmen, das DJs einen Ort bietet, an dem sie ihre Arbeit
-          präsentieren und von Veranstaltungsorten engagiert werden können.
+          Willkommen bei <strong>beatmatcher.org</strong>. Wir sind ein neues Start-up, das DJs einen Ort bietet, an dem sie ihre Arbeit präsentieren und von Clubs engagiert werden können
         </p>
         <p>
-          Wenn Sie ein DJ oder ein Veranstaltungsort sind, bekunden Sie bitte Ihr Interesse, indem Sie unten Ihre E-Mail-Adresse angeben.
+          DJs können ihr Profil, ihre Verfügbarkeit und ihren Preis angeben. Dann kann jeder Club sofort einen DJ bei jedem DJ auf der Website buchen.
         </p>
         <p>
-          Wir werden die Website nur erstellen, wenn wir genügend Interesse haben. Denken Sie also bitte daran, Ihren Freunden von uns zu erzählen!
+          Die gesamte Zahlung wird über die Website abgewickelt.
+        </p>
+        <p>
+          Wir listen auch bevorstehende Veranstaltungen für Fans von DJs oder Clubs auf. Fans können einem bestimmten DJ oder Club „folgen“, um dessen Veranstaltungen zu sehen.
+        </p>
+        <p>
+          Wenn Sie ein DJ oder ein Club sind, bekunden Sie bitte Ihr Interesse, indem Sie unten Ihre E-Mail-Adresse angeben.
+        </p>
+        <p>
+          Wir können nur starten, wenn genügend Interesse besteht. Denken Sie also bitte daran, Ihren Freunden von uns zu erzählen!
         </p>
         <form method="post">
           {% csrf_token %}
@@ -67,7 +84,11 @@
             <select onchange="placeholders()" id="type" name="type">
               <option>Bitte wähle eine Option</option>
               <option value="dj">Ich bin DJ</option>
-              <option value="venue">Wir sind ein Veranstaltungsort</option>
+              <option value="band">Wir sind eine Band</option>
+              <option value="act">Wir sind ein Live-Act</option>
+              <option value="venue">Wir sind eine Bar/Club</option>
+              <option value="festival">Wir sind ein Festival</option>
+              <option value="event">Ich bin Eventorganisator</option>
             </select>
           </p>
           <p>
