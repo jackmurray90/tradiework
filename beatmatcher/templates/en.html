@@ -41,11 +41,20 @@
     }
   };
   function placeholders() {
-    if (document.getElementById("type").value === "venue") {
-      document.getElementById("name").placeholder = "Venue name";
-    } else {
-      document.getElementById("name").placeholder = "DJ name";
+    const t = document.getElementById("type").value;
+    let placeholder = "DJ name";
+    if (t === "venue") {
+      placeholder = "Venue name";
+    } else if (t === "band") {
+      placeholder = "Band name";
+    } else if (t === "act") {
+      placeholder = "Act name";
+    } else if (t === "festival") {
+      placeholder = "Festival name";
+    } else if (t === "event") {
+      placeholder = "First name";
     }
+    document.getElementById("name").placeholder = placeholder;
   }
 </script>
 <div id="page" class="page">
