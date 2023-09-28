@@ -1,19 +1,18 @@
 from django.core.management.base import BaseCommand
 from beatmatcher.translations import tr
+import subprocess
 
 class Command(BaseCommand):
     help = "Checks the translations"
 
     def handle(self, *args, **options):
-        max_length = 0
-        max_lang = 'en'
+        trs = subprocess.check_output(["grep","-hor", "tr\.[a-zA-Z0-9]*", "beatmatcher/templates"])
+        trs = [tr.split(".")[1] for tr in trs.decode("utf-8").split("\n") if tr]
+        trs = set(trs)
         for lang in tr:
-            if len(tr[lang]) > max_length:
-                max_length = len(tr[lang])
-                max_lang = lang
-        for lang in tr:
-            print("Count for", lang, "is", len(tr[lang]))
-            if len(tr[lang]) < max_length:
-                for string in tr[max_lang]:
+            if len(tr[lang]) == len(trs):
+                print(lang, "has all translations")
+            else:
+                for string in trs:
                     if string not in tr[lang]:
-                        print("    Missing:", string)
+                        print(lang, "is missing", string)
