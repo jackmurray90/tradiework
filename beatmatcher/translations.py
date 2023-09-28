@@ -1,16 +1,26 @@
 tr = {
     "en": {
+        "lang": "en",
         "DJs": "DJs",
         "Clubs": "Clubs",
         "Events": "Events",
         "Login": "Log in",
         "Signup": "Sign up",
+        "Signmeup": "Sign me up",
+        "Emailaddress": "Email address",
+        "Logmein": "Log me in",
+        "Password": "Password",
     },
     "de": {
+        "lang": "de",
         "DJs": "DJs",
         "Clubs": "Clubs",
         "Events": "Veranstaltungen",
         "Login": "Anmeldung",
         "Signup": "Registrieren",
+        "Signmeup": "Melden Sie mich an",
+        "Emailaddress": "E-Mail-Adresse",
+        "Logmein": "Melde mich an",
+        "Password": "Passwort",
     },
 }
