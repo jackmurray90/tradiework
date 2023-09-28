@@ -41,3 +41,15 @@ class IndexView(View):
     def get(self, request, lang):
         if lang not in tr: raise Http404
         return render(request, "index.html", {"tr": tr[lang]})
+
+
+class LoginView(View):
+    def get(self, request, lang):
+        if lang not in tr: raise Http404
+        return render(request, "login.html", {"tr": tr[lang]})
+
+
+class SignupView(View):
+    def get(self, request, lang):
+        if lang not in tr: raise Http404
+        return render(request, "signup.html", {"tr": tr[lang]})

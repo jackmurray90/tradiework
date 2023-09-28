@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from beatmatcher.views import LandingPageView, InterestView, ThanksView, IndexView
+from beatmatcher.views import (
+    LandingPageView,
+    InterestView,
+    ThanksView,
+    IndexView,
+    LoginView,
+    SignupView,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -23,4 +30,6 @@ urlpatterns = [
     path("<lang>", InterestView.as_view(), name="interest"),
     path("<lang>/thanks", ThanksView.as_view(), name="thanks"),
     path("<lang>/index", IndexView.as_view(), name="index"),
+    path("<lang>/login", LoginView.as_view(), name="login"),
+    path("<lang>/signup", SignupView.as_view(), name="signup"),
 ]
