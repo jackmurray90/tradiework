@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from django.views import View
 from beatmatcher.models import Interest
+from beatmatcher.translations import tr
 
 
 class LandingPageView(View):
@@ -34,3 +35,9 @@ class ThanksView(View):
         if lang not in ["en", "de"]:
             raise Http404
         return render(request, f"thanks_{lang}.html")
+
+
+class IndexView(View):
+    def get(self, request, lang):
+        if lang not in tr: raise Http404
+        return render(request, "index.html", {"tr": tr[lang]})

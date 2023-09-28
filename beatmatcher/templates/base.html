@@ -1,0 +1,35 @@
+{% load static %}
+{% include "favicon.html" %}
+{% include "og-meta-tags.html" %}
+
+<!-- Global styles -->
+<link rel="stylesheet" href="{% static "global.css" %}">
+
+<!-- MUI -->
+<link rel="stylesheet" href="{% static "mui.css" %}">
+<script src="{% static "mui.js" %}"></script>
+
+<!-- Navigation -->
+<link rel="stylesheet" href="{% static "nav.css" %}">
+<script src="{% static "nav.js" %}"></script>
+
+<div id="nav">
+  <div>
+    <img src="{% static "speaker.png" %}" class="logo">
+    <a class="title" href="https://beatmatcher.org">Beatmatcher</a>
+  </div>
+  <ul>
+    <li><a href="#">{{ tr.DJs }}</a></li>
+    <li><a href="#">{{ tr.Clubs }}</a></li>
+    <li><a href="#">{{ tr.Events }}</a></li>
+    <li><a href="#">{{ tr.Login }}</a></li>
+    <li><a href="#">{{ tr.Signup }}</a></li>
+    <li class="hamburger">
+      <a href="javascript:void(0);" onclick="toggleNavbarHamburger()">
+        <div class="bar-1"></div>
+        <div class="bar-2"></div>
+        <div class="bar-3"></div>
+      </a>
+    </li>
+  </ul>
+</div>

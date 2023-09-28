@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "Montserrat-Thin";
+  src: url("Montserrat-Thin.ttf") format("truetype");
+}
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(210, 200, 190);
+}
