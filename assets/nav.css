@@ -14,6 +14,7 @@ body {
   margin-top: auto;
   border-top: 1px solid rgb(180, 170, 160);
 }
+.footer ul { padding-left: 1em; }
 #nav {
   position: fixed;
   display: flex;
