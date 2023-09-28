@@ -13,6 +13,12 @@ tr = {
         "Services": "Services",
         "Showcaseyourportfolio": "Showcase your portfolio",
         "BookaDJ": "Book a DJ",
+        "Readaboutourconcept": "Read about our concept",
+        "Advertiseyourevents": "Advertise your events",
+        "Contact": "Contact",
+        "Aboutus": "About us",
+        "Support": "Support",
+        "Language": "Language",
     },
     "de": {
         "lang": "de",
