@@ -13,24 +13,11 @@
 <!-- Global styles -->
 <link rel="stylesheet" href="{% static "global.css" %}">
 
-<div id="nav" class="light-background">
-  <div>
-    <img src="{% static "speaker.png" %}" class="logo">
-    <a class="title" href="https://beatmatcher.org">Beatmatcher</a>
-  </div>
-  <ul>
-    <li><a href="/{{ tr.lang }}/djs">{{ tr.DJs }}</a></li>
-    <li><a href="/{{ tr.lang }}/clubs">{{ tr.Clubs }}</a></li>
-    <li><a href="/{{ tr.lang }}/events">{{ tr.Events }}</a></li>
-    <li><a href="/{{ tr.lang }}/login">{{ tr.Login }}</a></li>
-    <li><a href="/{{ tr.lang }}/signup">{{ tr.Signup }}</a></li>
-    <li class="hamburger">
-      <a href="javascript:void(0);" onclick="toggleNavbarHamburger()">
-        <div class="bar-1"></div>
-        <div class="bar-2"></div>
-        <div class="bar-3"></div>
-      </a>
-    </li>
-  </ul>
-</div>
+<!-- Navigation -->
+{% include "nav.html" %}
+
+<!-- Content -->
 <div id="content">{% block content %}{% endblock %}</div>
+
+<!-- Footer -->
+{% include "footer.html" %}

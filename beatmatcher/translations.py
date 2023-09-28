@@ -10,6 +10,9 @@ tr = {
         "Emailaddress": "Email address",
         "Logmein": "Log me in",
         "Password": "Password",
+        "Services": "Services",
+        "Showcaseyourportfolio": "Showcase your portfolio",
+        "BookaDJ": "Book a DJ",
     },
     "de": {
         "lang": "de",

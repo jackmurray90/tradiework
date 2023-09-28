@@ -1,3 +1,19 @@
+.light-background {
+  background-color: rgb(240, 230, 220);
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#content {
+  margin-top: 12em;
+}
+.footer {
+  width: 100%;
+  margin-top: auto;
+  border-top: 1px solid rgb(180, 170, 160);
+}
 #nav {
   position: fixed;
   display: flex;
@@ -6,13 +22,10 @@
   width: 100%;
   height: 10em;
   padding: 0 5em;
-  background-color: rgb(240, 230, 220);
   border-bottom: 1px solid rgb(180, 170, 160);
   justify-content: space-between;
   font-family: "Montserrat-Thin";
-}
-#content {
-  margin-top: 12em;
+  z-index: 1;
 }
 #nav > div, #nav > ul {
   display: flex;
