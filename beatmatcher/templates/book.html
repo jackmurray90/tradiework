@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+  <style>
+    .datetime input[readonly] {
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      flatpickr("#booking-datetime", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        altInput: true,
+        altFormat: "F j, Y H:i",
+        minDate: "today",
+      });
+    }
+  </script>
+{% endblock %}
+
+{% block content %}
+  <div class="mui-container-fluid">
+    <div class="mui-row">
+      <div class="mui-col-md-3 mui-col-md-offset-3">
+        <h3>You are booking {{ dj.name }}</h3>
+        {% if dj.picture %}
+          <p>
+            <img src="{% get_static_prefix %}images/djs/{{ dj.id }}.png">
+          </p>
+        {% endif %}
+      </div>
+      <div class="mui-col-md-5">
+        <form class="mui-form" method="post">
+          <div class="mui-textfield mui-textfield--float-label">
+            <input type="text" name="booking-address">
+            <label>What is the venue address?</label>
+          </div>
+          <div class="datetime mui-textfield mui-textfield--float-label">
+            <input id="booking-datetime" type="text" name="booking-datetime">
+            <label>What time do you want their set to start?</label>
+          </div>
+          <div class="mui-textfield mui-textfield--float-label">
+            <input type="text" name="booking-hours">
+            <label>How many hours is their set?</label>
+          </div>
+          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Check availability</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
