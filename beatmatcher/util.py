@@ -1,4 +1,5 @@
 from secrets import randbits
+from threading import Lock
 
 
 def random_128_bit_string():
@@ -12,3 +13,6 @@ def random_128_bit_string():
         num, rem = _divmod(num, base)
         arr_append(ALPHABET[rem])
     return "".join(arr)
+
+
+update_user_lock = Lock()

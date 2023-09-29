@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.urls import reverse
-from beatmatcher.util import random_128_bit_string
+from beatmatcher.util import random_128_bit_string, update_user_lock
 from beatmatcher.models import SignUp, is_valid_username
 from beatmatcher.translations import tr
 from datetime import datetime, timezone, timedelta
@@ -21,11 +21,8 @@ class SignUpView(View):
         if lang not in tr:
             raise Http404
 
-        # Get the email, strip it, and lowercase it
-        email = request.POST["email"].strip().lower()
-
         # Check that a user with that email doesn't already exist
-        user = User.objects.filter(email=email).first()
+        user = User.objects.filter(email__iexact=request.POST["email"]).first()
         if user:
             return render(
                 request,
@@ -41,7 +38,7 @@ class SignUpView(View):
 
         # Create the email verification code
         sign_up = SignUp.objects.create(
-            email=email,
+            email=request.POST["email"],
             code=random_128_bit_string(),
             expiry=datetime.now(timezone.utc) + timedelta(days=1),
         )
@@ -51,7 +48,7 @@ class SignUpView(View):
         html = get_template(f"sign-up-email-{lang}.html")
         subject = tr[lang]["WelcometoBeatmatcher"]
         from_email = "no-reply@beatmatcher.org"
-        to = email
+        to = sign_up.email
         text_content = plaintext.render(
             {
                 "url": request.build_absolute_uri(
@@ -106,7 +103,7 @@ class SignUpVerifyView(View):
             )
 
         # Verify a user with that email doesn't already exist
-        if User.objects.filter(email=sign_up.email).first():
+        if User.objects.filter(email__iexact=sign_up.email).first():
             return render(
                 request,
                 "sign-up-verify.html",
@@ -138,18 +135,6 @@ class SignUpVerifyView(View):
                 },
             )
 
-        # Verify a user with that email doesn't already exist
-        if User.objects.filter(email=sign_up.email).first():
-            return render(
-                request,
-                "sign-up-verify.html",
-                {
-                    "tr": tr[lang],
-                    "username": request.POST["username"],
-                    "error": tr[lang]["Auserwiththatemailaddressalreadyexists"],
-                },
-            )
-
         # Verify passwords match
         if not request.POST["password"] == request.POST["password-verify"]:
             return render(
@@ -178,26 +163,39 @@ class SignUpVerifyView(View):
                 },
             )
 
-        # Verify username is not taken.
-        if User.objects.filter(username=request.POST["username"]).first():
-            return render(
-                request,
-                "sign-up-verify.html",
-                {
-                    "tr": tr[lang],
-                    "username": request.POST["username"],
-                    "errors": {
-                        "username": tr[lang]["Thatusernameistaken"],
+        with update_user_lock:
+            # Verify a user with that email doesn't already exist
+            if User.objects.filter(email__iexact=sign_up.email).first():
+                return render(
+                    request,
+                    "sign-up-verify.html",
+                    {
+                        "tr": tr[lang],
+                        "username": request.POST["username"],
+                        "error": tr[lang]["Auserwiththatemailaddressalreadyexists"],
                     },
-                },
-            )
+                )
 
-        # Create the user and set their password
-        user = User.objects.create(
-            username=request.POST["username"], email=sign_up.email
-        )
-        user.set_password(request.POST["password"])
-        user.save()
+            # Verify username is not taken.
+            if User.objects.filter(username__iexact=request.POST["username"]).first():
+                return render(
+                    request,
+                    "sign-up-verify.html",
+                    {
+                        "tr": tr[lang],
+                        "username": request.POST["username"],
+                        "errors": {
+                            "username": tr[lang]["Thatusernameistaken"],
+                        },
+                    },
+                )
+
+            # Create the user and set their password
+            user = User.objects.create(
+                username=request.POST["username"], email=sign_up.email
+            )
+            user.set_password(request.POST["password"])
+            user.save()
 
         # Delete the SignUp object
         sign_up.delete()
