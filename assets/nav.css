@@ -92,7 +92,7 @@ body {
     transform: translate(0, -7px) rotate(45deg);
   }
   #nav.open {
-    position: relative;
+    position: fixed;
     top: 0;
     right: 0;
     height: auto;
