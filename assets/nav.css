@@ -15,6 +15,7 @@ body {
   border-top: 1px solid rgb(180, 170, 160);
 }
 .footer ul { padding-left: 1em; }
+#content img { border: 1px solid rgb(180, 170, 160); }
 #nav {
   position: fixed;
   display: flex;
