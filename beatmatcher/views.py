@@ -39,25 +39,29 @@ class ThanksView(View):
 
 class IndexView(View):
     def get(self, request, lang):
-        if lang not in tr: raise Http404
+        if lang not in tr:
+            raise Http404
         return render(request, "index.html", {"tr": tr[lang]})
 
 
 class LoginView(View):
     def get(self, request, lang):
-        if lang not in tr: raise Http404
+        if lang not in tr:
+            raise Http404
         return render(request, "login.html", {"tr": tr[lang]})
 
 
 class SignupView(View):
     def get(self, request, lang):
-        if lang not in tr: raise Http404
+        if lang not in tr:
+            raise Http404
         return render(request, "signup.html", {"tr": tr[lang]})
 
 
 class DJsView(View):
     def get(self, request, lang):
-        if lang not in tr: raise Http404
+        if lang not in tr:
+            raise Http404
         djs = [
             {
                 "id": 2,
@@ -86,7 +90,8 @@ class DJsView(View):
 
 class BookView(View):
     def get(self, request, lang, dj_username):
-        if lang not in tr: raise Http404
+        if lang not in tr:
+            raise Http404
         dj = {
             "id": 1,
             "picture": True,
@@ -102,7 +107,8 @@ class BookView(View):
 
 class ClubsView(View):
     def get(self, request, lang):
-        if lang not in tr: raise Http404
+        if lang not in tr:
+            raise Http404
         clubs = [
             {
                 "id": 1,
