@@ -5,10 +5,10 @@
     <a class="title" href="https://beatmatcher.org">Beatmatcher</a>
   </div>
   <ul>
-    <li><a href="/{{ tr.lang }}/djs">{{ tr.DJs }}</a></li>
-    <li><a href="/{{ tr.lang }}/clubs">{{ tr.Clubs }}</a></li>
-    <li><a href="/{{ tr.lang }}/signup">{{ tr.Signup }}</a></li>
-    <li><a href="/{{ tr.lang }}/login">{{ tr.Login }}</a></li>
+    <li><a href="{% url "djs" lang=tr.lang %}">{{ tr.DJs }}</a></li>
+    <li><a href="{% url "clubs" lang=tr.lang %}">{{ tr.Clubs }}</a></li>
+    <li><a href="{% url "sign-up" lang=tr.lang %}">{{ tr.Signup }}</a></li>
+    <li><a href="{% url "log-in" lang=tr.lang %}">{{ tr.Login }}</a></li>
     <li class="hamburger">
       <a href="javascript:void(0);" onclick="toggleNavbarHamburger()">
         <div class="bar-1"></div>

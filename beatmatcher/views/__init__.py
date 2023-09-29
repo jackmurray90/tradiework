@@ -3,6 +3,7 @@ from django.http import Http404
 from django.views import View
 from beatmatcher.models import Interest
 from beatmatcher.translations import tr
+from beatmatcher.views.sign_up import SignUpView
 
 
 class LandingPageView(View):
@@ -44,18 +45,11 @@ class IndexView(View):
         return render(request, "index.html", {"tr": tr[lang]})
 
 
-class LoginView(View):
+class LogInView(View):
     def get(self, request, lang):
         if lang not in tr:
             raise Http404
-        return render(request, "login.html", {"tr": tr[lang]})
-
-
-class SignupView(View):
-    def get(self, request, lang):
-        if lang not in tr:
-            raise Http404
-        return render(request, "signup.html", {"tr": tr[lang]})
+        return render(request, "log-in.html", {"tr": tr[lang]})
 
 
 class DJsView(View):
