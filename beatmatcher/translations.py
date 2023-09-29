@@ -36,6 +36,7 @@ tr = {
         "Invalidusername_text": "Invalid username. Must be 150 characters or fewer. Usernames may contain alphanumeric, _, @, +, . and - characters.",
         "Youarenowloggedout": "You are now logged out.",
         "Logout": "Log out",
+        "Invalidlogin_text": "Invalid email address or password.",
     },
     "de": {
         "lang": "de",

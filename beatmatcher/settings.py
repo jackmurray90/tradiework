@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+AUTHENTICATION_BACKENDS = ["beatmatcher.auth.EmailBackend"]
+
 # Application definition
 
 INSTALLED_APPS = [

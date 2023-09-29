@@ -29,6 +29,7 @@ from beatmatcher.views import (
     DJsView,
     ClubsView,
     BookView,
+    AccountView,
 )
 
 urlpatterns = [
@@ -54,4 +55,5 @@ urlpatterns = [
     path("<lang>/djs", DJsView.as_view(), name="djs"),
     path("<lang>/clubs", ClubsView.as_view(), name="clubs"),
     path("<lang>/book/<dj_username>", BookView.as_view(), name="book"),
+    path("<lang>/account", AccountView.as_view(), name="account"),
 ]
