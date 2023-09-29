@@ -10,11 +10,15 @@ class Command(BaseCommand):
         template_trs = subprocess.check_output(
             ["grep", "-hor", "tr\.[a-zA-Z0-9]*", "beatmatcher/templates"]
         )
-        template_trs = [tr.split(".")[1] for tr in template_trs.decode("utf-8").split("\n") if tr]
+        template_trs = [
+            tr.split(".")[1] for tr in template_trs.decode("utf-8").split("\n") if tr
+        ]
         view_trs = subprocess.check_output(
-            ["grep", "-hor", "tr\[lang\]\[\"[a-zA-Z0-9]*", "beatmatcher/views"]
+            ["grep", "-hor", 'tr\[lang\]\["[a-zA-Z0-9]*', "beatmatcher/views"]
         )
-        view_trs = [tr.split("\"")[1] for tr in view_trs.decode("utf-8").split("\n") if tr]
+        view_trs = [
+            tr.split('"')[1] for tr in view_trs.decode("utf-8").split("\n") if tr
+        ]
         trs = set(template_trs + view_trs)
         for lang in tr:
             missing = False
