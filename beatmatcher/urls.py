@@ -22,6 +22,8 @@ from beatmatcher.views import (
     IndexView,
     LoginView,
     SignupView,
+    DJsView,
+    ClubsView,
 )
 
 urlpatterns = [
@@ -32,4 +34,6 @@ urlpatterns = [
     path("<lang>/index", IndexView.as_view(), name="index"),
     path("<lang>/login", LoginView.as_view(), name="login"),
     path("<lang>/signup", SignupView.as_view(), name="signup"),
+    path("<lang>/djs", DJsView.as_view(), name="djs"),
+    path("<lang>/clubs", ClubsView.as_view(), name="clubs"),
 ]

@@ -53,3 +53,44 @@ class SignupView(View):
     def get(self, request, lang):
         if lang not in tr: raise Http404
         return render(request, "signup.html", {"tr": tr[lang]})
+
+
+class DJsView(View):
+    def get(self, request, lang):
+        if lang not in tr: raise Http404
+        djs = [
+            {
+                "id": 1,
+                "name": "Postmodern",
+                "description": "Postmodern is a DJ in Berlin specializing in techno and house music.",
+                "styles": ["techno", "house"],
+                "rate": 300,
+            },
+        ]
+        return render(request, "djs.html", {"tr": tr[lang], "djs": djs})
+
+
+class ClubsView(View):
+    def get(self, request, lang):
+        if lang not in tr: raise Http404
+        clubs = [
+            {
+                "id": 1,
+                "picture": True,
+                "name": "Berghain",
+                "description": "Berghain is a nightclub in Berlin, Germany. It is named after its location near the border between Kreuzberg and Friedrichshain in Berlin, and is a short walk from Berlin Ostbahnhof main line railway station. Berghain is commonly known as the techno capital of the world.",
+            },
+            {
+                "id": 2,
+                "picture": True,
+                "name": "Kater Blau",
+                "description": "Unpretentious club with a riverside terrace, hosting DJ-led all-night parties with a techno vibe.",
+            },
+            {
+                "id": 3,
+                "picture": False,
+                "name": "KitKatClub",
+                "description": "The KitKatClub is a nightclub in Berlin, opened in March 1994 by Austrian pornographic filmmaker Simon Thaur and his life partner Kirsten Krüger.",
+            },
+        ]
+        return render(request, "clubs.html", {"tr": tr[lang], "clubs": clubs})

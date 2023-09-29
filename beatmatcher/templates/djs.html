@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="mui-container-fluid">
+    {% for dj in djs %}
+      <div class="mui-row">
+        <div class="mui-col-md-3 mui-col-md-offset-3">
+          <img src="{% get_static_prefix %}images/djs/{{ dj.id }}.png">
+        </div>
+        <div class="mui-col-md-3">
+          <h2>{{ dj.name }}</h2>
+          <p>{{ dj.description }}</p>
+          <p>Rate: &euro;{{ dj.rate }} per hour</p>
+          <form class="mui-form">
+            <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Book now</button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
