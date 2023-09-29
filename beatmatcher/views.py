@@ -60,6 +60,16 @@ class DJsView(View):
         if lang not in tr: raise Http404
         djs = [
             {
+                "id": 2,
+                "picture": True,
+                "name": "Ben Klock",
+                "description": "German DJ and producer Ben Klock is a renowned advocate of the trance-inducing minimal techno with which Berlin's Berghain club and its Ostgut Ton imprint are synonymous. Klock was raised in Berlin and began DJing in the mid '90s at the illegal rave scene which blossomed after the fall of the Wall.",
+                "styles": ["techno"],
+                "in_house": False,
+                "booking_url": "happinessjournal.org",
+                "soundcloud_url": "https://soundcloud.com/ben-klock",
+            },
+            {
                 "id": 1,
                 "picture": True,
                 "username": "postmodern",

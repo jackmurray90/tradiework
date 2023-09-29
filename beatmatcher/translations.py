@@ -41,5 +41,7 @@ tr = {
         "Services": "Dienstleistungen",
         "Readaboutourconcept": "Lesen Sie mehr über unser Konzept",
         "Support": "Unterstützung",
+        "Booknow": "Buchen Sie jetzt",
+        "Bookings": "Buchungen",
     },
 }
