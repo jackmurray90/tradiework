@@ -19,6 +19,9 @@ tr = {
         "Aboutus": "About us",
         "Support": "Support",
         "Language": "Language",
+        "Booknow": "Book now",
+        "Bookings": "Bookings",
+        "ViewonSoundCloud": "View on SoundCloud",
     },
     "de": {
         "lang": "de",

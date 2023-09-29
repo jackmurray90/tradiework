@@ -12,12 +12,27 @@
           <h2>{{ dj.name }}</h2>
           <p>{{ dj.description }}</p>
           <p>Rate: &euro;{{ dj.rate }} per hour</p>
-          <form method="get" class="mui-form" style="display: inline-block;">
-            <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Book now</button>
-          </form>
-          <form method="get" class="mui-form" style="display: inline-block;">
-            <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">View portfolio</button>
-          </form>
+          {% if dj.in_house or dj.booking_url %}
+            <form
+              class="mui-form"
+              style="display: inline-block;"
+              method="get"
+              action="{% if dj.in_house %}{% url "book" lang=tr.lang dj_username=dj.username %}{% else %}{{ dj.booking_url }}{% endif %}"
+            >
+              <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">
+                {% if dj.in_house %}
+                  {{ tr.Booknow }}
+                {% else %}
+                  {{ tr.Bookings }}
+                {% endif %}
+              </button>
+            </form>
+          {% endif %}
+          {% if dj.soundcloud_url %}
+            <form class="mui-form" style="display: inline-block;" method="get" action="{{ dj.soundcloud_url }}">
+              <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">{{ tr.ViewonSoundCloud }}</button>
+            </form>
+          {% endif %}
         </div>
       </div>
     {% endfor %}
