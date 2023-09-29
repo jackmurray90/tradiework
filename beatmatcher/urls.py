@@ -25,6 +25,7 @@ from beatmatcher.views import (
     SignUpSuccessView,
     SignUpVerifyView,
     SignUpVerifySuccessView,
+    LogOutView,
     DJsView,
     ClubsView,
     BookView,
@@ -37,6 +38,7 @@ urlpatterns = [
     path("<lang>/thanks", ThanksView.as_view(), name="thanks"),
     path("<lang>/index", IndexView.as_view(), name="index"),
     path("<lang>/log-in", LogInView.as_view(), name="log-in"),
+    path("<lang>/log-out", LogOutView.as_view(), name="log-out"),
     path("<lang>/sign-up", SignUpView.as_view(), name="sign-up"),
     path("<lang>/sign-up/success", SignUpSuccessView.as_view(), name="sign-up-success"),
     path(

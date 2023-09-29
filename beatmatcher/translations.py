@@ -34,6 +34,8 @@ tr = {
         "Thatusernameistaken": "That username is taken",
         "Username": "Username",
         "Invalidusername_text": "Invalid username. Must be 150 characters or fewer. Usernames may contain alphanumeric, _, @, +, . and - characters.",
+        "Youarenowloggedout": "You are now logged out.",
+        "Logout": "Log out",
     },
     "de": {
         "lang": "de",

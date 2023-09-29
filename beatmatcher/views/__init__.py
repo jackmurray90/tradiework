@@ -9,6 +9,10 @@ from beatmatcher.views.sign_up import (
     SignUpVerifyView,
     SignUpVerifySuccessView,
 )
+from beatmatcher.views.log_in import (
+    LogInView,
+    LogOutView,
+)
 
 
 class LandingPageView(View):
@@ -48,13 +52,6 @@ class IndexView(View):
         if lang not in tr:
             raise Http404
         return render(request, "index.html", {"tr": tr[lang]})
-
-
-class LogInView(View):
-    def get(self, request, lang):
-        if lang not in tr:
-            raise Http404
-        return render(request, "log-in.html", {"tr": tr[lang]})
 
 
 class DJsView(View):
