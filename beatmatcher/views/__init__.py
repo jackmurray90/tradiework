@@ -3,7 +3,12 @@ from django.http import Http404
 from django.views import View
 from beatmatcher.models import Interest
 from beatmatcher.translations import tr
-from beatmatcher.views.sign_up import SignUpView
+from beatmatcher.views.sign_up import (
+    SignUpView,
+    SignUpSuccessView,
+    SignUpVerifyView,
+    SignUpVerifySuccessView,
+)
 
 
 class LandingPageView(View):

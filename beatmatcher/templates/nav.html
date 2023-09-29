@@ -7,8 +7,12 @@
   <ul>
     <li><a href="{% url "djs" lang=tr.lang %}">{{ tr.DJs }}</a></li>
     <li><a href="{% url "clubs" lang=tr.lang %}">{{ tr.Clubs }}</a></li>
-    <li><a href="{% url "sign-up" lang=tr.lang %}">{{ tr.Signup }}</a></li>
-    <li><a href="{% url "log-in" lang=tr.lang %}">{{ tr.Login }}</a></li>
+    {% if user.is_authenticated %}
+      <li><a href="{% url "sign-up" lang=tr.lang %}">{{ tr.Account }}</a></li>
+    {% else %}
+      <li><a href="{% url "sign-up" lang=tr.lang %}">{{ tr.Signup }}</a></li>
+      <li><a href="{% url "log-in" lang=tr.lang %}">{{ tr.Login }}</a></li>
+    {% endif %}
     <li class="hamburger">
       <a href="javascript:void(0);" onclick="toggleNavbarHamburger()">
         <div class="bar-1"></div>
