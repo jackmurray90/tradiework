@@ -31,5 +31,12 @@ tr = {
         "Emailaddress": "E-Mail-Adresse",
         "Logmein": "Melde mich an",
         "Password": "Passwort",
+        "BookaDJ": "Buchen Sie einen DJ",
+        "Aboutus": "Über uns",
+        "Language": "Sprache",
+        "Showcaseyourportfolio": "Präsentieren Sie Ihr Portfolio",
+        "Services": "Dienstleistungen",
+        "Readaboutourconcept": "Lesen Sie mehr über unser Konzept",
+        "Support": "Unterstützung",
     },
 }
