@@ -5,12 +5,12 @@
   <div class="mui-container-fluid">
     {% for dj in djs %}
       <div class="mui-row">
-        <div class="mui-col-lg-3 mui-col-lg-offset-3 mui-col-md-6">
+        <div class="mui-col-lg-3 mui-col-lg-offset-3 mui-col-md-3">
           {% if dj.picture %}
             <img src="{% get_static_prefix %}images/djs/{{ dj.id }}.png" style="margin-top: 1em">
           {% endif %}
         </div>
-        <div class="mui-col-lg-3 mui-col-md-6">
+        <div class="mui-col-lg-4 mui-col-md-9">
           <h2>{{ dj.name }}</h2>
           <p>{{ dj.description }}</p>
           {% if dj.rate is not None %}
