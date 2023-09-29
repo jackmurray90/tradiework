@@ -22,7 +22,7 @@ class SignUpView(View):
             raise Http404
 
         # Check that a user with that email doesn't already exist
-        user = User.objects.filter(email__iexact=request.POST["email"]).first()
+        user = User.objects.filter(email=request.POST["email"]).first()
         if user:
             return render(
                 request,
@@ -103,7 +103,7 @@ class SignUpVerifyView(View):
             )
 
         # Verify a user with that email doesn't already exist
-        if User.objects.filter(email__iexact=sign_up.email).first():
+        if User.objects.filter(email=sign_up.email).first():
             return render(
                 request,
                 "sign-up-verify.html",
@@ -165,7 +165,7 @@ class SignUpVerifyView(View):
 
         with update_user_lock:
             # Verify a user with that email doesn't already exist
-            if User.objects.filter(email__iexact=sign_up.email).first():
+            if User.objects.filter(email=sign_up.email).first():
                 return render(
                     request,
                     "sign-up-verify.html",
