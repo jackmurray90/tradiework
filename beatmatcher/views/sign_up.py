@@ -6,7 +6,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.urls import reverse
 from beatmatcher.util import random_128_bit_string, update_user_lock
-from beatmatcher.models import SignUp, is_valid_username
+from beatmatcher.models import Settings, SignUp, is_valid_username
 from beatmatcher.translations import tr
 from datetime import datetime, timezone, timedelta
 
@@ -196,6 +196,9 @@ class SignUpVerifyView(View):
             )
             user.set_password(request.POST["password"])
             user.save()
+
+        # Create the settings module for the user
+        Settings.objects.create(user=user)
 
         # Delete the SignUp object
         sign_up.delete()

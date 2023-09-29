@@ -25,3 +25,7 @@ class Interest(models.Model):
     type = models.CharField(max_length=200, choices=TYPE_CHOICES)
     name = models.CharField(max_length=200)
     email = models.EmailField()
+
+
+class Settings(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
