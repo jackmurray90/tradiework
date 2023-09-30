@@ -15,9 +15,18 @@
         <form class="mui-form" method="get" action="{% url "edit-dj" lang=tr.lang %}">
           <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">{{ tr.EditDJprofile }}</button>
         </form>
-        <form class="mui-form" method="get">
-          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">{{ tr.Updatebankdetails }}</button>
-        </form>
+        <h2>{{ tr.Pendingbookings }}</h2>
+        {% if not pending_bookings %}
+          <p>You have no pending bookings.</p>
+        {% else %}
+          <p>You have pending bookings.</p>
+          <p>Please accept or decline them:</p>
+          <ul>
+            {% for booking in pending_bookings %}
+              <li><a href="{% url 'booking' lang=tr.lang code=booking.code %}">Booking for {{ booking.contact_name }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </div>
     </div>
   </div>

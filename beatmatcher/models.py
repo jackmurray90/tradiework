@@ -33,6 +33,7 @@ class Interest(models.Model):
 
 class Settings(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    language = models.CharField(max_length=2)
 
 
 class DJ(models.Model):

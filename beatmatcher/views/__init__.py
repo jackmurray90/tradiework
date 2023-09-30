@@ -96,4 +96,5 @@ class AccountView(View):
             raise Http404
         if not request.user.is_authenticated:
             return redirect("log-in", lang=lang)
-        return render(request, "account.html", {"tr": tr[lang]})
+        pending_bookings = request.user.booking_set.filter(status="pending")
+        return render(request, "account.html", {"tr": tr[lang], "pending_bookings": pending_bookings})

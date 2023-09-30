@@ -9,7 +9,6 @@ def render_datetime(dt):
 
 
 def translate_status(status, lang):
-    print("status is", status)
     return tr[lang][f"Booking{status}"]
 
 

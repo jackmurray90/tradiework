@@ -83,6 +83,8 @@ tr = {
         "Invalidphonenumber": "Invalid phone number.",
         "Contactnameisrequired": "Contact name is required.",
         "Contactnameistoolong_text": "Contact name is too long, maximum length 200 characters.",
+        "NewbookingonBeatmatcher": "New booking on Beatmatcher",
+        "Pendingbookings": "Pending bookings",
     },
     "de": {
         "lang": "de",
@@ -168,5 +170,7 @@ tr = {
         "Invalidphonenumber": "Ungültige Telefonnummer.",
         "Contactnameisrequired": "Der Name des Kontakts ist erforderlich.",
         "Contactnameistoolong_text": "Der Kontaktname ist zu lang, maximale Länge 200 Zeichen.",
+        "NewbookingonBeatmatcher": "Neue Buchung auf Beatmatcher",
+        "Pendingbookings": "Ausstehende Buchungen",
     },
 }

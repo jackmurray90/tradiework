@@ -198,7 +198,7 @@ class SignUpVerifyView(View):
             user.save()
 
         # Create the settings module for the user
-        Settings.objects.create(user=user)
+        Settings.objects.create(user=user, language=lang)
 
         # Delete the SignUp object
         sign_up.delete()

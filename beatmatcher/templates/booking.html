@@ -16,7 +16,7 @@
   <div class="mui-container-fluid">
     <div class="mui-row">
       <div class="mui-col-md-6 mui-col-md-offset-3">
-        {% if booking.status == "pending" %}
+        {% if booking.status == "pending" and user != booking.user %}
           <p>
             {{ tr.Wehavecontactedavailability_template|with_arg:booking.user.dj.name }}
           </p>
@@ -69,6 +69,18 @@
             </tr>
           </tbody>
         </table>
+        {% if booking.status == "pending" and user == booking.user %}
+          <form class="mui-form" method="post" style="display: inline-block;">
+            {% csrf_token %}
+            <input type="hidden" name="response" value="accept">
+            <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Accept</button>
+          </form>
+          <form class="mui-form" method="post" style="display: inline-block;">
+            {% csrf_token %}
+            <input type="hidden" name="response" value="decline">
+            <button type="submit" class="mui-btn mui-btn--danger mui-btn--raised">Decline</button>
+          </form>
+        {% endif %}
       </div>
     </div>
   </div>

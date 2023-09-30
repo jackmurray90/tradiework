@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from django.views import View
 from django.contrib.auth.models import User
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.urls import reverse
 from beatmatcher.models import Booking
 from beatmatcher.translations import tr
 from beatmatcher.util import random_128_bit_string
@@ -104,8 +107,35 @@ class NewBookingView(View):
         # Save the booking request
         booking.save()
 
-        # Email the DJ
-        # TODO
+        # Generate the email
+        plaintext = get_template(f"new-booking-email-{lang}.txt")
+        html = get_template(f"new-booking-email-{lang}.html")
+        subject = tr[lang]["NewbookingonBeatmatcher"]
+        from_email = "no-reply@beatmatcher.org"
+        to = user.email
+        text_content = plaintext.render(
+            {
+                "url": request.build_absolute_uri(
+                    reverse(
+                        "account", kwargs={"lang": user.settings.language}
+                    )
+                )
+            }
+        )
+        html_content = html.render(
+            {
+                "url": request.build_absolute_uri(
+                    reverse(
+                        "account", kwargs={"lang": user.settings.language}
+                    )
+                )
+            }
+        )
+
+        # Create the email message with the content and send it
+        message = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        message.attach_alternative(html_content, "text/html")
+        message.send()
 
         return redirect("booking", lang=lang, code=booking.code)
 
