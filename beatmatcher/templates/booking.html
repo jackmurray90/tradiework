@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load translation %}
+{% load booking %}
+
+{% block content %}
+  <div class="mui-container-fluid">
+    <div class="mui-row">
+      <div class="mui-col-md-6 mui-col-md-offset-3">
+        <h2>Booking for {{ booking.user.dj.name }}</h2>
+        <p>
+          Address: {{ booking.address }}
+        </p>
+        <p>
+          Rate: {{ booking.rate }} euro per hour
+        </p>
+        <p>
+          Start: {{ booking.arrival_time|render_datetime }}
+        </p>
+        <p>
+          Hours: {{ booking.hours }}
+        </p>
+        <p>
+          Status: {{ booking.status|translate_status:tr.lang }}
+        </p>
+        {% if booking.status == "pending" %}
+          <p>
+            We have contacted the DJ to confirm availability.
+          </p>
+          <p>
+            You will receive an email when they accept or decline the booking.
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

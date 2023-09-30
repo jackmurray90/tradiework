@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load translation %}
+{% load booking %}
 
 {% block head %}
   <style>
@@ -12,6 +13,9 @@
   <script>
     window.onload = function() {
       flatpickr("#booking-datetime", {
+        {% if booking.arrival_time %}
+          defaultDate: "{{ booking.arrival_time|render_datetime }}",
+        {% endif %}
         enableTime: true,
         dateFormat: "Y-m-d H:i",
         altInput: true,
@@ -35,17 +39,38 @@
       </div>
       <div class="mui-col-md-5">
         <form class="mui-form" method="post">
+          {% csrf_token %}
           <div class="mui-textfield mui-textfield--float-label">
-            <input type="text" name="booking-address">
+            <input type="text" name="email" value="{{ booking.email }}">
+            <label>{{ tr.Emailaddress }}</label>
+            {% if errors.email %}
+              <p class="mui--text-danger">{{ errors.email }}</p>
+            {% endif %}
+          </div>
+          <div class="mui-textfield mui-textfield--float-label">
+            <input type="text" name="address" value="{{ booking.address }}">
             <label>{{ tr.Whatisthevenueaddress }}</label>
+            {% if errors.address %}
+              <p class="mui--text-danger">{{ errors.address }}</p>
+            {% endif %}
           </div>
           <div class="datetime mui-textfield mui-textfield--float-label">
-            <input id="booking-datetime" type="text" name="booking-datetime">
+            <input id="booking-datetime" type="text" name="arrival-time" value="{% if booking.arrival_time %}{{ booking.arrival_time }}{% endif %}">
             <label>{{ tr.Whattimedoyouwantthemtoarrive }}</label>
+            {% if errors.arrival_time %}
+              <p class="mui--text-danger">{{ errors.arrival_time }}</p>
+            {% endif %}
           </div>
           <div class="mui-textfield mui-textfield--float-label">
-            <input type="text" name="booking-hours">
+            <input type="text" name="hours" value="{% if booking.hours %}{{ booking.hours }}{% endif %}">
             <label>{{ tr.Howmanyhoursisthebookingfor }}</label>
+            {% if errors.hours %}
+              <p class="mui--text-danger">{{ errors.hours }}</p>
+            {% endif %}
+          </div>
+          <div class="mui-textfield mui-textfield--float-label">
+            <textarea name="other-information">{{ booking.other_information }}</textarea>
+            <label>{{ tr.Anyotherinformation }}</label>
           </div>
           <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">{{ tr.Makebookingrequest }}</button>
         </form>

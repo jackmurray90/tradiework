@@ -27,7 +27,8 @@ from beatmatcher.views import (
     LogOutView,
     DJsView,
     ClubsView,
-    BookView,
+    NewBookingView,
+    BookingView,
     AccountView,
     EditDJView,
     EditDJSuccessView,
@@ -50,7 +51,10 @@ urlpatterns = [
     ),
     path("<lang>/djs", DJsView.as_view(), name="djs"),
     path("<lang>/clubs", ClubsView.as_view(), name="clubs"),
-    path("<lang>/book/<dj_username>", BookView.as_view(), name="book"),
+    path(
+        "<lang>/booking/new/<dj_username>", NewBookingView.as_view(), name="new-booking"
+    ),
+    path("<lang>/booking/<code>", BookingView.as_view(), name="booking"),
     path("<lang>/account", AccountView.as_view(), name="account"),
     path("<lang>/account/edit-dj", EditDJView.as_view(), name="edit-dj"),
     path(

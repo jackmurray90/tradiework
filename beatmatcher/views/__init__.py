@@ -13,6 +13,7 @@ from beatmatcher.views.log_in import (
     LogOutView,
 )
 from beatmatcher.views.dj import EditDJView, EditDJSuccessView
+from beatmatcher.views.booking import NewBookingView, BookingView
 
 
 class LandingPageView(View):
@@ -60,23 +61,6 @@ class DJsView(View):
             raise Http404
         djs = DJ.objects.all()
         return render(request, "djs.html", {"tr": tr[lang], "djs": djs})
-
-
-class BookView(View):
-    def get(self, request, lang, dj_username):
-        if lang not in tr:
-            raise Http404
-        dj = {
-            "id": 1,
-            "picture": True,
-            "name": "Postmodern",
-            "description": "Postmodern is a DJ in Berlin specializing in techno and house music.",
-            "styles": ["techno", "house"],
-            "in_house": True,
-            "soundcloud_url": "https://soundcloud.com/postmoderndj",
-            "rate": 300,
-        }
-        return render(request, "book.html", {"tr": tr[lang], "dj": dj})
 
 
 class ClubsView(View):

@@ -55,11 +55,10 @@ class EditDJView(View):
             errors["soundcloud_url"] = tr[lang]["SoundCloudURLrequirements_text"]
 
         # Rate
-        if dj.rate:
-            try:
-                dj.rate = int(dj.rate)
-            except:
-                errors["rate"] = tr[lang]["Hourlyratemustbeaninteger"]
+        try:
+            dj.rate = int(dj.rate)
+        except:
+            errors["rate"] = tr[lang]["Hourlyratemustbeaninteger"]
 
         # Picture
         if "picture" in request.FILES:

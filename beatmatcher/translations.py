@@ -60,6 +60,12 @@ tr = {
         "Pictureistoolarge": "Picture is too large.",
         "Pictureisnotlargeenough_text": "Picture is not large enough, must be at least 180x180 pixels.",
         "Invalidpicture": "Invalid picture.",
+        "Anyotherinformation": "Any other information",
+        "Addressistoolong_text": "Address is too long, maximum length 200 characters.",
+        "Invalidarrivaltime": "Invalid arrival time.",
+        "Bookinghoursmustbeaninteger": "Booking hours must be an integer.",
+        "Invalidemailaddress": "Invalid email address.",
+        "Bookingpending": "Pending confirmation from DJ.",
     },
     "de": {
         "lang": "de",
@@ -122,5 +128,6 @@ tr = {
         "Pictureisnotlargeenough_text": "Das Bild ist nicht groß genug, es muss mindestens 180 x 180 Pixel groß sein.",
         "Invalidpicture": "Ungültiges Bild.",
         "Stagenamerequirements_text": "Der Bühnenname muss festgelegt werden und darf nicht mehr als 200 Zeichen umfassen.",
+        "Anyotherinformation": "Irgendwelche andere Informationen",
     },
 }

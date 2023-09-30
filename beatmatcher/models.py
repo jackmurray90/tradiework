@@ -46,7 +46,7 @@ class DJ(models.Model):
 
 
 class Booking(models.Model):
-    STATES = [
+    STATUSES = [
         ("pending", "Pending"),
         ("accepted", "Accepted"),
         ("rejected", "Rejected"),
@@ -57,4 +57,6 @@ class Booking(models.Model):
     hours = models.IntegerField()
     other_information = models.TextField()
     rate = models.IntegerField(null=True)
-    state = models.CharField(max_length=200, choices=STATES, default="pending")
+    status = models.CharField(max_length=200, choices=STATUSES, default="pending")
+    code = models.CharField(max_length=23)
+    email = models.EmailField()

@@ -25,7 +25,7 @@
               class="mui-form"
               style="display: inline-block;"
               method="get"
-              action="{% if dj.user %}{% url "book" lang=tr.lang dj_username=dj.user.username %}{% else %}{{ dj.booking_url }}{% endif %}"
+              action="{% if dj.user %}{% url "new-booking" lang=tr.lang dj_username=dj.user.username %}{% else %}{{ dj.booking_url }}{% endif %}"
             >
               <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">
                 {% if dj.user %}
