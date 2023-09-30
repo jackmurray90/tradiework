@@ -4,7 +4,11 @@ import re
 
 
 def is_valid_username(username):
-    return re.fullmatch("[a-zA-Z0-9_@+.-]*", username) and len(username) <= 150
+    return (
+        re.fullmatch("[a-zA-Z0-9_@+.-]*", username)
+        and len(username) > 0
+        and len(username) <= 150
+    )
 
 
 class SignUp(models.Model):
