@@ -50,3 +50,12 @@ class Command(BaseCommand):
                 text = re.sub("<.*?>", " ", text)
                 if re.search("\S", text):
                     print(path)
+
+        print("Checking for strings in the code that have spaces in them")
+        views = Path("beatmatcher/views")
+        for path in views.rglob("*.py"):
+            output = subprocess.check_output(["grep", "-ho", '"[^"]*"', path])
+            strings = [line for line in output.decode("utf-8").split("\n") if line]
+            for string in strings:
+                if " " in string:
+                    print(path, string)
