@@ -13,6 +13,7 @@ from beatmatcher.views.log_in import (
     LogInView,
     LogOutView,
 )
+from beatmatcher.views.dj import EditDJView, EditDJSuccessView
 
 
 class LandingPageView(View):
