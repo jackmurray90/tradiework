@@ -48,7 +48,7 @@ class NewBookingView(View):
         booking.user = user
         booking.email = request.POST["email"]
         booking.address = request.POST["address"]
-        booking.arrival_time = request.POST["arrival-time"]
+        booking.set_time = request.POST["set-time"]
         booking.hours = request.POST["hours"]
         booking.other_information = request.POST["other-information"]
         booking.rate = dj.rate
@@ -67,13 +67,13 @@ class NewBookingView(View):
         if not booking.email or len(booking.email) > 254:
             errors["email"] = tr[lang]["Invalidemailaddress"]
 
-        # Arrival time
+        # Set time
         try:
-            booking.arrival_time = datetime.strptime(
-                booking.arrival_time, "%Y-%m-%d %H:%M"
+            booking.set_time = datetime.strptime(
+                booking.set_time, "%Y-%m-%d %H:%M"
             )
         except:
-            errors["arrival_time"] = tr[lang]["Invalidarrivaltime"]
+            errors["set_time"] = tr[lang]["Invalidsettime"]
 
         # Hours
         try:

@@ -13,8 +13,8 @@
   <script>
     window.onload = function() {
       flatpickr("#booking-datetime", {
-        {% if booking.arrival_time %}
-          defaultDate: "{{ booking.arrival_time|render_datetime }}",
+        {% if booking.set_time %}
+          defaultDate: "{{ booking.set_time|render_datetime }}",
         {% endif %}
         enableTime: true,
         dateFormat: "Y-m-d H:i",
@@ -55,10 +55,10 @@
             {% endif %}
           </div>
           <div class="datetime mui-textfield mui-textfield--float-label">
-            <input id="booking-datetime" type="text" name="arrival-time" value="{% if booking.arrival_time %}{{ booking.arrival_time }}{% endif %}">
+            <input id="booking-datetime" type="text" name="set-time" value="{% if booking.set_time %}{{ booking.set_time }}{% endif %}">
             <label>{{ tr.Whattimedoyouwantthemtoarrive }}</label>
-            {% if errors.arrival_time %}
-              <p class="mui--text-danger">{{ errors.arrival_time }}</p>
+            {% if errors.set_time %}
+              <p class="mui--text-danger">{{ errors.set_time }}</p>
             {% endif %}
           </div>
           <div class="mui-textfield mui-textfield--float-label">
