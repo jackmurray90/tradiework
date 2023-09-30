@@ -31,6 +31,11 @@ class Command(BaseCommand):
             if not missing:
                 print(lang, "has all translations")
 
+        for lang in tr:
+            for string in tr[lang]:
+                if string not in trs:
+                    print(lang, "has excess translation", string)
+
         print("Checking for templates that may contain untranslated texts")
 
         templates = Path("beatmatcher/templates")
