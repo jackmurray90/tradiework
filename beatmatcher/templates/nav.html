@@ -8,7 +8,7 @@
     <li><a href="{% url "djs" lang=tr.lang %}">{{ tr.DJs }}</a></li>
     <li><a href="{% url "clubs" lang=tr.lang %}">{{ tr.Clubs }}</a></li>
     {% if user.is_authenticated %}
-      <li><a href="{% url "sign-up" lang=tr.lang %}">{{ tr.Account }}</a></li>
+      <li><a href="{% url "account" lang=tr.lang %}">{{ tr.Account }}</a></li>
       <li><a href="{% url "log-out" lang=tr.lang %}">{{ tr.Logout }}</a></li>
     {% else %}
       <li><a href="{% url "sign-up" lang=tr.lang %}">{{ tr.Signup }}</a></li>

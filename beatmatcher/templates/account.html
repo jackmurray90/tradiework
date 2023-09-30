@@ -1,21 +1,31 @@
 {% extends "base.html" %}
 
+{% block head %}
+  <style>
+    form { width: 100%; }
+    form button { width: 100%; }
+  </style>
+{% endblock %}
+
 {% block content %}
   <div class="mui-container-fluid">
     <div class="mui-row">
-      <div class="mui-col-md-4 mui-col-md-offset-4">
-        <form class="mui-form" method="post">
-          {% csrf_token %}
-          <legend>{{ tr.Account }}</legend>
-          Account stuff here.
-          <div class="mui-textfield mui-textfield--float-label">
-            <input type="text" name="email" value="{{ email }}">
-            <label>{{ tr.Emailaddress }}</label>
-            {% if errors.email %}
-              <p class="mui--text-danger">{{ errors.email }}</p>
-            {% endif %}
-          </div>
-          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">{{ tr.Signmeup }}</button>
+      <div class="mui-col-lg-4 mui-col-lg-offset-4 mui-col-md-6 mui-col-md-offset-3">
+        <h2>Your account</h2>
+        <form class="mui-form" method="get">
+          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Edit DJ profile</button>
+        </form>
+        <form class="mui-form" method="get">
+          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Change password</button>
+        </form>
+        <form class="mui-form" method="get">
+          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Change email</button>
+        </form>
+        <form class="mui-form" method="get">
+          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Change username</button>
+        </form>
+        <form class="mui-form" method="get">
+          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Update bank details</button>
         </form>
       </div>
     </div>

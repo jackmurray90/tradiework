@@ -132,4 +132,6 @@ class AccountView(View):
     def get(self, request, lang):
         if lang not in tr:
             raise Http404
+        if not request.user.is_authenticated:
+            return redirect("log-in", lang=lang)
         return render(request, "account.html", {"tr": tr[lang]})
