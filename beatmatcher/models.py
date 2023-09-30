@@ -43,3 +43,11 @@ class DJ(models.Model):
     booking_url = models.CharField(max_length=200, null=True)
     soundcloud_url = models.CharField(max_length=200)
     rate = models.IntegerField(null=True)
+
+
+class BookingRequest(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    address = models.CharField(max_length=200)
+    arrival_time = models.DateTimeField()
+    hours = models.IntegerField()
+    other_information = models.TextField()
