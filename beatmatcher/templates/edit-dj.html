@@ -32,52 +32,45 @@
       <div class="mui-col-lg-6 mui-col-md-9">
         <form class="mui-form" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          <legend>Edit DJ profile</legend>
+          <legend>{{ tr.EditDJprofile }}</legend>
           <div class="mui-textfield mui-textfield--float-label">
             <input type="text" name="name" value="{{ dj.name }}">
-            <label>Stage name</label>
+            <label>{{ tr.Stagename }}</label>
             {% if errors.name %}
               <p class="mui--text-danger">{{ errors.name }}</p>
             {% endif %}
           </div>
           <div class="mui-textfield mui-textfield--float-label">
             <textarea name="description">{{ dj.description }}</textarea>
-            <label>Description</label>
+            <label>{{ tr.Description }}</label>
             {% if errors.description %}
               <p class="mui--text-danger">{{ errors.description }}</p>
             {% endif %}
           </div>
           <div class="filefield">
-            <p class="label">Profile picture</p>
-            <label for="picture" class="mui-btn mui-btn--primary mui-btn--raised" id="picture-text">Change profile picture</label>
-            <p>Must be square, at least 180x180 pixels, and file size must not exceed 20MB.</p>
+            <p class="label">{{ tr.Profilepicture }}</p>
+            <label for="picture" class="mui-btn mui-btn--primary mui-btn--raised" id="picture-text">{{ tr.Changeprofilepicture }}</label>
+            <p>{{ tr.Profilepicturerequirements_text }}</p>
             <input id="picture" type="file" name="picture" onchange="update_filename()">
             {% if errors.picture %}
               <p class="mui--text-danger">{{ errors.picture }}</p>
             {% endif %}
           </div>
-          <!-- <div class="mui-textfield mui-textfield--float-label">
-            <input type="text" name="booking_url" value="{{ dj.booking_url }}">
-            <label>Booking URL (if not accepting bookings from Beatmatcher)</label>
-            {% if errors.booking_url %}
-              <p class="mui--text-danger">{{ errors.booking_url }}</p>
-            {% endif %}
-          </div> -->
           <div class="mui-textfield mui-textfield--float-label">
             <input type="text" name="soundcloud_url" value="{{ dj.soundcloud_url }}">
-            <label>SoundCloud URL</label>
+            <label>{{ tr.SoundCloudURL }}</label>
             {% if errors.soundcloud_url %}
               <p class="mui--text-danger">{{ errors.soundcloud_url }}</p>
             {% endif %}
           </div>
           <div class="mui-textfield mui-textfield--float-label">
             <input type="text" name="rate" value="{% if dj.rate is not None %}{{ dj.rate }}{% endif %}">
-            <label>Rate (&euro; per hour)</label>
+            <label>{{ tr.Rateeuroperhour|safe }}</label>
             {% if errors.rate %}
               <p class="mui--text-danger">{{ errors.rate }}</p>
             {% endif %}
           </div>
-          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Save</button>
+          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">{{ tr.Save }}</button>
         </form>
       </div>
     </div>

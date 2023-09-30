@@ -1,6 +1,8 @@
 from django.core.management.base import BaseCommand
 from beatmatcher.translations import tr
+from pathlib import Path
 import subprocess
+import re
 
 
 class Command(BaseCommand):
@@ -28,3 +30,18 @@ class Command(BaseCommand):
                     missing = True
             if not missing:
                 print(lang, "has all translations")
+
+        print("Checking for templates that may contain untranslated texts")
+
+        templates = Path("beatmatcher/templates")
+        for path in templates.rglob("*"):
+            with open(path, "r") as f:
+                text = f.read()
+                text = text.replace("\n", " ")
+                text = re.sub("{{.*?}}", " ", text)
+                text = re.sub("{%.*?%}", " ", text)
+                text = re.sub("<style>.*?</style>", " ", text)
+                text = re.sub("<script>.*?</script>", " ", text)
+                text = re.sub("<.*?>", " ", text)
+                if re.search("\S", text):
+                    print(path)

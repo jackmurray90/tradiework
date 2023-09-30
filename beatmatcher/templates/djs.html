@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load translation %}
 
 {% block content %}
   <div class="mui-container-fluid">
@@ -14,10 +15,10 @@
           <h2>{{ dj.name }}</h2>
           <p>{{ dj.description }}</p>
           {% if dj.rate %}
-            <p>Rate: &euro;{{ dj.rate }} per hour</p>
+            <p>{{ tr.Rate_template|with_arg:dj.rate|safe }}</p>
           {% endif %}
           {% if not dj.user %}
-            <p><strong>Beatmatcher is not directly affiliated with this DJ.</strong></p>
+            <p><strong>{{ tr.BeatmatcherisnotdirectlyaffiliatedwiththisDJ }}</strong></p>
           {% endif %}
           {% if dj.user or dj.booking_url %}
             <form
@@ -37,7 +38,7 @@
           {% endif %}
           {% if dj.soundcloud_url %}
             <form class="mui-form" style="display: inline-block;" method="get" action="{{ dj.soundcloud_url }}">
-              <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">SoundCloud</button>
+              <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">{{ tr.SoundCloud }}</button>
             </form>
           {% endif %}
         </div>
