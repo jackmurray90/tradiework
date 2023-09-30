@@ -53,5 +53,9 @@ urlpatterns = [
     path("<lang>/book/<dj_username>", BookView.as_view(), name="book"),
     path("<lang>/account", AccountView.as_view(), name="account"),
     path("<lang>/account/edit-dj", EditDJView.as_view(), name="edit-dj"),
-    path("<lang>/account/edit-dj/success", EditDJSuccessView.as_view(), name="edit-dj-success"),
+    path(
+        "<lang>/account/edit-dj/success",
+        EditDJSuccessView.as_view(),
+        name="edit-dj-success",
+    ),
 ]

@@ -48,7 +48,10 @@ class EditDJView(View):
             errors["name"] = tr[lang]["Stagenamerequirements_text"]
 
         # SoundCloud URL
-        if dj.soundcloud_url and (not dj.soundcloud_url.startswith("https://soundcloud.com/") or len(dj.soundcloud_url) > 200):
+        if dj.soundcloud_url and (
+            not dj.soundcloud_url.startswith("https://soundcloud.com/")
+            or len(dj.soundcloud_url) > 200
+        ):
             errors["soundcloud_url"] = tr[lang]["SoundCloudURLrequirements_text"]
 
         # Rate
@@ -61,7 +64,7 @@ class EditDJView(View):
         # Picture
         if "picture" in request.FILES:
             image_bytes = request.FILES["picture"].read()
-            if len(image_bytes) > 1024*1024*20:
+            if len(image_bytes) > 1024 * 1024 * 20:
                 errors["picture"] = tr[lang]["Pictureistoolarge"]
             try:
                 image = Image.open(BytesIO(image_bytes))
@@ -73,14 +76,16 @@ class EditDJView(View):
 
         # In the case of any errors, simply re-render the form:
         if errors:
-            return render(request, "edit-dj.html", {"tr": tr[lang], "dj": dj, "errors": errors})
+            return render(
+                request, "edit-dj.html", {"tr": tr[lang], "dj": dj, "errors": errors}
+            )
 
         # Save the DJ
         dj.save()
 
         # Save the uploaded profile picture
         if "picture" in request.FILES:
-            image.resize((180,180)).save(f"static/images/djs/{dj.id}.png")
+            image.resize((180, 180)).save(f"static/images/djs/{dj.id}.png")
 
         return redirect("edit-dj-success", lang=lang)
 
