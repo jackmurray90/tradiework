@@ -45,7 +45,7 @@ class DJ(models.Model):
     rate = models.IntegerField(null=True)
 
 
-class BookingRequest(models.Model):
+class Booking(models.Model):
     STATES = [
         ("pending", "Pending"),
         ("accepted", "Accepted"),
