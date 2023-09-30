@@ -23,7 +23,7 @@
           <p>{{ tr.Pleaseacceptordeclinethem }}</p>
           <ul>
             {% for booking in pending_bookings %}
-              <li><a href="{% url 'booking' lang=tr.lang code=booking.code %}">{{ booking.contact_name }}</a></li>
+              <li><a href="{% url 'booking' lang=tr.lang code=booking.code %}">{{ booking.contact_name }}, {{ booking.set_time }}</a></li>
             {% endfor %}
           </ul>
         {% endif %}
