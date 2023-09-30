@@ -46,6 +46,8 @@ class NewBookingView(View):
         # Set the fields from the request
         booking = Booking()
         booking.user = user
+        booking.contact_name = request.POST["contact-name"]
+        booking.phone_number = request.POST["phone-number"]
         booking.email = request.POST["email"]
         booking.address = request.POST["address"]
         booking.set_time = request.POST["set-time"]
@@ -59,8 +61,20 @@ class NewBookingView(View):
 
         errors = {}
 
+        # Contact name
+        if not booking.contact_name:
+            errors["contact_name"] = tr[lang]["Contactnameisrequired"]
+        elif len(booking.contact_name) > 200:
+            errors["contact_name"] = tr[lang]["Contactnameistoolong_text"]
+
+        # Phone number
+        if not booking.phone_number or len(booking.phone_number) > 200:
+            errors["phone_number"] = tr[lang]["Invalidphonenumber"]
+
         # Address
-        if not booking.address or len(booking.address) > 200:
+        if not booking.address:
+            errors["address"] = tr[lang]["Addressisrequired"]
+        elif len(booking.address) > 200:
             errors["address"] = tr[lang]["Addressistoolong_text"]
 
         # Email
@@ -69,9 +83,7 @@ class NewBookingView(View):
 
         # Set time
         try:
-            booking.set_time = datetime.strptime(
-                booking.set_time, "%Y-%m-%d %H:%M"
-            )
+            booking.set_time = datetime.strptime(booking.set_time, "%Y-%m-%d %H:%M")
         except:
             errors["set_time"] = tr[lang]["Invalidsettime"]
 

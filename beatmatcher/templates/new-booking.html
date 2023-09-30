@@ -41,6 +41,20 @@
         <form class="mui-form" method="post">
           {% csrf_token %}
           <div class="mui-textfield mui-textfield--float-label">
+            <input type="text" name="contact-name" value="{{ booking.contact_name }}">
+            <label>{{ tr.Contactname }}</label>
+            {% if errors.contact_name %}
+              <p class="mui--text-danger">{{ errors.contact_name }}</p>
+            {% endif %}
+          </div>
+          <div class="mui-textfield mui-textfield--float-label">
+            <input type="text" name="phone-number" value="{{ booking.phone_number }}">
+            <label>{{ tr.Phonenumber }}</label>
+            {% if errors.phone_number %}
+              <p class="mui--text-danger">{{ errors.phone_number }}</p>
+            {% endif %}
+          </div>
+          <div class="mui-textfield mui-textfield--float-label">
             <input type="text" name="email" value="{{ booking.email }}">
             <label>{{ tr.Emailaddress }}</label>
             {% if errors.email %}
