@@ -73,12 +73,12 @@
           <form class="mui-form" method="post" style="display: inline-block;">
             {% csrf_token %}
             <input type="hidden" name="response" value="accept">
-            <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Accept</button>
+            <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">{{ tr.Accept }}</button>
           </form>
           <form class="mui-form" method="post" style="display: inline-block;">
             {% csrf_token %}
             <input type="hidden" name="response" value="decline">
-            <button type="submit" class="mui-btn mui-btn--danger mui-btn--raised">Decline</button>
+            <button type="submit" class="mui-btn mui-btn--danger mui-btn--raised">{{ tr.Decline }}</button>
           </form>
         {% endif %}
       </div>

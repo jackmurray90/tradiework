@@ -17,13 +17,13 @@
         </form>
         <h2>{{ tr.Pendingbookings }}</h2>
         {% if not pending_bookings %}
-          <p>You have no pending bookings.</p>
+          <p>{{ tr.Youhavenopendingbookings }}</p>
         {% else %}
-          <p>You have pending bookings.</p>
-          <p>Please accept or decline them:</p>
+          <p>{{ tr.Youhavependingbookings }}</p>
+          <p>{{ tr.Pleaseacceptordeclinethem }}</p>
           <ul>
             {% for booking in pending_bookings %}
-              <li><a href="{% url 'booking' lang=tr.lang code=booking.code %}">Booking for {{ booking.contact_name }}</a></li>
+              <li><a href="{% url 'booking' lang=tr.lang code=booking.code %}">{{ booking.contact_name }}</a></li>
             {% endfor %}
           </ul>
         {% endif %}

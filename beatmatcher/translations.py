@@ -85,6 +85,11 @@ tr = {
         "Contactnameistoolong_text": "Contact name is too long, maximum length 200 characters.",
         "NewbookingonBeatmatcher": "New booking on Beatmatcher",
         "Pendingbookings": "Pending bookings",
+        "Accept": "Accept",
+        "Decline": "Decline",
+        "Youhavenopendingbookings": "You have no pending bookings.",
+        "Youhavependingbookings": "You have pending bookings.",
+        "Pleaseacceptordeclinethem": "Please accept or decline them.",
     },
     "de": {
         "lang": "de",
@@ -172,5 +177,10 @@ tr = {
         "Contactnameistoolong_text": "Der Kontaktname ist zu lang, maximale Länge 200 Zeichen.",
         "NewbookingonBeatmatcher": "Neue Buchung auf Beatmatcher",
         "Pendingbookings": "Ausstehende Buchungen",
+        "Accept": "Akzeptieren",
+        "Decline": "Verweigern",
+        "Youhavenopendingbookings": "Sie haben keine ausstehenden Buchungen.",
+        "Youhavependingbookings": "Sie haben ausstehende Buchungen.",
+        "Pleaseacceptordeclinethem": "Bitte akzeptieren Sie diese oder lehnen Sie sie ab.",
     },
 }
