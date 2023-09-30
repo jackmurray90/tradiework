@@ -46,8 +46,15 @@ class DJ(models.Model):
 
 
 class BookingRequest(models.Model):
+    STATES = [
+        ("pending", "Pending"),
+        ("accepted", "Accepted"),
+        ("rejected", "Rejected"),
+    ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=200)
     arrival_time = models.DateTimeField()
     hours = models.IntegerField()
     other_information = models.TextField()
+    rate = models.IntegerField(null=True)
+    state = models.CharField(max_length=200, choices=STATES, default="pending")
