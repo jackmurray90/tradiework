@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import Http404
 from django.views import View
-from beatmatcher.models import Interest
+from beatmatcher.models import Interest, DJ
 from beatmatcher.translations import tr
 from beatmatcher.views.sign_up import (
     SignUpView,
@@ -59,29 +59,7 @@ class DJsView(View):
     def get(self, request, lang):
         if lang not in tr:
             raise Http404
-        djs = [
-            {
-                "id": 2,
-                "picture": True,
-                "name": "Ben Klock",
-                "description": "German DJ and producer Ben Klock is a renowned advocate of the trance-inducing minimal techno with which Berlin's Berghain club and its Ostgut Ton imprint are synonymous. Klock was raised in Berlin and began DJing in the mid '90s at the illegal rave scene which blossomed after the fall of the Wall.",
-                "styles": ["techno"],
-                "in_house": False,
-                "booking_url": "https://circle-booking.com/",
-                "soundcloud_url": "https://soundcloud.com/ben-klock",
-            },
-            {
-                "id": 1,
-                "picture": True,
-                "username": "postmodern",
-                "name": "Postmodern",
-                "description": "Postmodern is a DJ in Berlin specializing in techno and house music.",
-                "styles": ["techno", "house"],
-                "in_house": True,
-                "soundcloud_url": "https://soundcloud.com/postmoderndj",
-                "rate": 300,
-            },
-        ]
+        djs = DJ.objects.all()
         return render(request, "djs.html", {"tr": tr[lang], "djs": djs})
 
 

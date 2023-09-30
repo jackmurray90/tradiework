@@ -13,21 +13,21 @@
         <div class="mui-col-lg-4 mui-col-md-9">
           <h2>{{ dj.name }}</h2>
           <p>{{ dj.description }}</p>
-          {% if dj.rate is not None %}
+          {% if dj.rate %}
             <p>Rate: &euro;{{ dj.rate }} per hour</p>
           {% endif %}
-          {% if not dj.in_house %}
+          {% if not dj.user %}
             <p><strong>Beatmatcher is not directly affiliated with this DJ.</strong></p>
           {% endif %}
-          {% if dj.in_house or dj.booking_url %}
+          {% if dj.user or dj.booking_url %}
             <form
               class="mui-form"
               style="display: inline-block;"
               method="get"
-              action="{% if dj.in_house %}{% url "book" lang=tr.lang dj_username=dj.username %}{% else %}{{ dj.booking_url }}{% endif %}"
+              action="{% if dj.user %}{% url "book" lang=tr.lang dj_username=dj.user.username %}{% else %}{{ dj.booking_url }}{% endif %}"
             >
               <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">
-                {% if dj.in_house %}
+                {% if dj.user %}
                   {{ tr.Booknow }}
                 {% else %}
                   {{ tr.Bookings }}
