@@ -7,7 +7,6 @@ from beatmatcher.views.sign_up import (
     SignUpView,
     SignUpSuccessView,
     SignUpVerifyView,
-    SignUpVerifySuccessView,
 )
 from beatmatcher.views.log_in import (
     LogInView,

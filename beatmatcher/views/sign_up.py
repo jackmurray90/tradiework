@@ -206,11 +206,4 @@ class SignUpVerifyView(View):
         # Log in the user
         login(request, user)
 
-        return redirect("sign-up-verify-success", lang=lang)
-
-
-class SignUpVerifySuccessView(View):
-    def get(self, request, lang):
-        if lang not in tr:
-            raise Http404
-        return render(request, "sign-up-verify-success.html", {"tr": tr[lang]})
+        return redirect("account", lang=lang)
