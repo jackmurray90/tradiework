@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load translation %}
+
+{% block head %}
+  <style>
+    textarea.danger { color: red; }
+    td { vertical-align: top; }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="mui-container-fluid">
+    <div class="mui-row">
+      <div class="mui-col-md-10 mui-col-md-offset-1">
+        <form class="mui-form" method="post">
+          {% csrf_token %}
+          <legend>{{ "Check/Edit languages"|tr:lang }}</legend>
+          <table>
+            <tr>
+              <th>String</th>
+              {% for language in strings.0 %}
+                <th>{{ language.name }}</th>
+              {% endfor %}
+            </tr>
+            {% for string in strings %}
+              <tr>
+                <td>
+                  <div
+                    style="width: 20em"
+                    class="mui-textfield"
+                    {% if not string.0.translation.in_use %}
+                      class="mui--text-danger"
+                    {% endif %}
+                  >
+                    {{ string.0.translation.english }}
+                  </div>
+                </td>
+                {% for language in string %}
+                  <td>
+                    <div class="mui-textfield" style="width: 20em">
+                      <textarea
+                        name="{{ language.translation.language.code }}-{{ language.translation.english }}"
+                        {% if not language.translation.in_use %}
+                          class="danger"
+                        {% endif %}
+                      >{{ language.translation.translation }}</textarea>
+                    </div>
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </table>
+          <div class="mui-checkbox">
+            <label>
+              <input type="checkbox" name="purge" value="true">
+              {{ "Purge unused"|tr:lang }}
+            </label>
+          </div>
+          <button
+            type="submit"
+            class="mui-btn mui-btn--primary mui-btn--raised"
+          >
+            {{ "Save"|tr:lang }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -30,6 +30,9 @@ translations = {
         "Set your account details": "Set your account details",
         "Verify password": "Verify password",
         "Sign me up": "Sign me up",
+        "Check/Edit languages": "Check/Edit languages",
+        "Save": "Save",
+        "Purge unused": "Purge unused",
     },
     "de": {
         "Log me in": "Melde mich an",
@@ -62,6 +65,9 @@ translations = {
         "Set your account details": "Legen Sie Ihre Kontodaten fest",
         "Verify password": "Passwort bestätigen",
         "Sign me up": "Melden Sie mich an",
+        "Check/Edit languages": "Sprachen prüfen/bearbeiten",
+        "Save": "Speichern",
+        "Purge unused": "Nicht verwendetes löschen",
     },
 }
 
