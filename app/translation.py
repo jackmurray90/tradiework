@@ -34,6 +34,7 @@ translations = {
         "Purge unused": "Purge unused",
         "List links to your services here": "List links to your services here",
         "Information about your account goes here": "Information about your account goes here",
+        "String": "String",
     },
     "de": {
         "Log me in": "Melde mich an",
@@ -70,6 +71,7 @@ translations = {
         "Purge unused": "Nicht verwendetes löschen",
         "List links to your services here": "Listen Sie hier Links zu Ihren Dienstleistungen auf",
         "Information about your account goes here": "Informationen zu Ihrem Konto finden Sie hier",
+        "String": "Zeichenfolge",
     },
 }
 
