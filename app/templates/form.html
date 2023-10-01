@@ -1,0 +1,59 @@
+{% load translation %}
+
+<form class="mui-form" method="post">
+  {% csrf_token %}
+  <legend>{{ form.title }}</legend>
+  {% if form.error %}
+    <p class="mui--text-danger">
+      {{ form.error }}
+    </p>
+  {% endif %}
+  {% for element in form.elements %}
+    {% if element.type == "text" %}
+      <div class="mui-textfield mui-textfield--float-label">
+        <input
+          type="text"
+          name="{{ element.name }}"
+          {% if element.max_length %}
+            maxlength="{{ element.max_length }}"
+          {% endif %}
+          {% if element.required %}
+            required
+          {% endif %}
+          {% if element.value %}
+            value="{{ element.value }}"
+          {% endif %}
+        >
+        <label>{{ element.label }}</label>
+        {% if element.error %}
+          <p class="mui--text-danger">
+            {{ element.error }}
+          </p>
+        {% endif %}
+      </div>
+    {% elif element.type == "password" %}
+      <div class="mui-textfield mui-textfield--float-label">
+        <input
+          type="password"
+          name="{{ element.name }}"
+          {% if element.required %}
+            required
+          {% endif %}
+        >
+        <label>{{ element.label }}</label>
+        {% if element.error %}
+          <p class="mui--text-danger">
+            {{ element.error }}
+          </p>
+        {% endif %}
+      </div>
+    {% elif element.type == "submit-button" %}
+      <button
+        type="submit"
+        class="mui-btn mui-btn--primary mui-btn--raised"
+      >
+        {{ element.label }}
+      </button>
+    {% endif %}
+  {% endfor %}
+</form>
