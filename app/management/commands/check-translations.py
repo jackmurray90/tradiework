@@ -30,6 +30,14 @@ class Command(BaseCommand):
             if not Language.objects.filter(code=code).first():
                 Language.objects.create(code=code, name=name)
 
+        print("\nEnsuring all strings in translation.py exist in DB\n")
+
+        for lang in translations:
+            language = Language.objects.get(code=lang)
+            for english in translations[lang]:
+                if not String.objects.filter(english=english, language=language).first():
+                    String.objects.create(english=english, language=language, translation=translations[lang][english], in_use=True)
+
         all_strings = set()
         new_strings = set()
         error = False
