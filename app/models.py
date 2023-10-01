@@ -13,6 +13,18 @@ class SignUp(models.Model):
     expiry = models.DateTimeField()
 
 
+class Language(models.Model):
+    code = models.CharField(max_length=2, primary_key=True)
+    name = models.CharField(max_length=200)
+
+
+class String(models.Model):
+    english = models.TextField()
+    language = models.ForeignKey(Language, on_delete=models.CASCADE)
+    translation = models.TextField()
+    in_use = models.BooleanField()
+
+
 class Settings(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    language = models.CharField(max_length=2)
+    language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load translation %}
+
+{% block content %}
+  <div class="mui-container-fluid">
+    <div class="mui-row">
+      <div class="mui-col-md-10 mui-col-md-offset-1">
+        <table>
+          <tr>
+            {% for language in strings.0 %}
+              <th>{{ language.name }}</th>
+            {% endfor %}
+          </tr>
+          {% for string in strings %}
+            <tr>
+              {% for language in string %}
+                <td
+                  {% if not language.translation.in_use %}
+                    class="mui--text-danger"
+                  {% endif %}
+                >
+                  {{ language.translation.translation }}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </table>
+        {% if code is None %}
+          <p>{{ "Unable to generate code due to quotes"|tr:lang }}</p>
+        {% else %}
+          <textarea>{{ code }}</textarea>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

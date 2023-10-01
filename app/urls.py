@@ -9,6 +9,7 @@ from app.views import (
     ConceptView,
     WebDevelopmentView,
     AccountView,
+    AdminLanguageView,
 )
 
 urlpatterns = [
@@ -26,4 +27,6 @@ urlpatterns = [
     path("<lang>/web-development", WebDevelopmentView.as_view(), name="web-development"),
     # Accounts
     path("<lang>/account", AccountView.as_view(), name="account"),
+    # Admin
+    path("<lang>/admin/language", AdminLanguageView.as_view(), name="admin-language"),
 ]
