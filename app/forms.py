@@ -84,11 +84,7 @@ class Form:
             self.validate(lang)
 
     def get_elements(self):
-        return [
-            (key, self.__class__.__dict__[key])
-            for key in self.__class__.__dict__.keys()
-            if not key.startswith(f"__") and key not in f"validate"
-        ]
+        return [(key, self.__class__.__dict__[key]) for key in self.__class__.__dict__.keys() if not key.startswith(f"__") and key not in f"validate"]
 
     def validate(self, lang):
         return None

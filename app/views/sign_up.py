@@ -73,12 +73,8 @@ class SignUpView(View):
         subject = tr("Welcome to %s", lang) % settings.SITE_TITLE
         from_email = f"no-reply@{request.get_host()}"
         to = sign_up.email
-        text_content = plaintext.render(
-            {f"url": request.build_absolute_uri(reverse(f"sign-up-verify", kwargs={f"lang": lang, f"code": sign_up.code}))}
-        )
-        html_content = html.render(
-            {f"url": request.build_absolute_uri(reverse(f"sign-up-verify", kwargs={f"lang": lang, f"code": sign_up.code}))}
-        )
+        text_content = plaintext.render({f"url": request.build_absolute_uri(reverse(f"sign-up-verify", kwargs={f"lang": lang, f"code": sign_up.code}))})
+        html_content = html.render({f"url": request.build_absolute_uri(reverse(f"sign-up-verify", kwargs={f"lang": lang, f"code": sign_up.code}))})
 
         # Create the email message with the content and send it
         message = EmailMultiAlternatives(subject, text_content, from_email, [to])
