@@ -57,20 +57,4 @@ class AdminLanguageView(View):
                     }
                 )
             strings.append(languages)
-        unable_to_generate_code = False
-        bracket = chr(123)
-        close_bracket = chr(125)
-        code = f"translations = {bracket}\n"
-        quote = chr(34)
-        for language in Language.objects.all():
-            code += f"    {quote}{language.code}{quote}: {bracket}\n"
-            for string in String.objects.filter(language=language, in_use=True):
-                if quote in string.english or quote in string.translation:
-                    unable_to_generate_code = True
-                code += f"          {quote}{string.english}{quote}: {quote}{string.translation}{quote},\n"
-            code += f"    {close_bracket},\n"
-        code += f"{close_bracket}\n"
-        code += f"def tr(string, lang): return translations.get(lang, {bracket}{close_bracket}).get(string, string)\n"
-        if unable_to_generate_code:
-            code = None
-        return render(request, f"admin-language.html", {f"strings": strings, f"code": code})
+        return render(request, f"admin-language.html", {f"strings": strings})

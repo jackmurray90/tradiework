@@ -25,11 +25,6 @@
             </tr>
           {% endfor %}
         </table>
-        {% if code is None %}
-          <p>{{ "Unable to generate code due to quotes"|tr:lang }}</p>
-        {% else %}
-          <textarea>{{ code }}</textarea>
-        {% endif %}
       </div>
     </div>
   </div>

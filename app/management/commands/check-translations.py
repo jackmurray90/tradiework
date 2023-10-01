@@ -34,17 +34,16 @@ class Command(BaseCommand):
         new_strings = set()
         error = False
 
+        python_string_regex = r'(.)"(([^"\\]|\\.)*)"'
+        template_string_regex = r'"(([^"\\]|\\.)*)"\|tr:lang'
+
         print("\nChecking new for strings in the code:\n")
         for path in list(Path("app/views").rglob("*.py")) + [Path("app/forms.py")]:
             if path.is_file():
                 with open(path, "r") as f:
                     text = f.read()
-                    for string in re.findall('."[^"]*"', text):
-                        if string.endswith('\\"'):
-                            print("Error: Unsupported string with backslash detected in", path)
-                            error = True
-                        if not string.startswith("f"):
-                            string = string[2:-1]
+                    for format_char, string, _ in re.findall(python_string_regex, text):
+                        if format_char != 'f':
                             all_strings.add(string)
                             if not String.objects.filter(language__code="en", english=string).first():
                                 print(path, string)
@@ -55,18 +54,14 @@ class Command(BaseCommand):
             if path.is_file():
                 with open(path, "r") as f:
                     text = f.read()
-                    for string in re.findall('(."[^"]*")\\|tr:lang', text):
-                        if string.startswith("\\"):
-                            print("Error: Unsupported string with backslash detected in", path)
-                            error = True
-                        string = string[2:-1]
+                    for string, _ in re.findall(template_string_regex, text):
                         all_strings.add(string)
                         if not String.objects.filter(language__code="en", english=string).first():
                             print(path, string)
                             new_strings.add(string)
 
         if new_strings:
-            print('\nNew strings detected. Please check they look okay. If they are correct, enter "yes"')
+            print('\nNew strings detected. Please check they look okay. If they are correct, enter "yes" and they will be translated.')
             if input() != "yes":
                 exit()
 
@@ -85,7 +80,22 @@ class Command(BaseCommand):
                         translation = translate_text(string, language.code)
                         String.objects.create(language=language, english=string, translation=translation, in_use=True)
                         print(string, "-- translated to", language.name, "is --", translation)
-        print("\nVisit http://localhost:8000/en/admin/language as a superuser to generate translation.py\n")
+        print("\nVisit http://localhost:8000/en/admin/language manage translations.\n")
+
+        print("\nGenerating app/translation.py\n")
+        code = "translations = {\n"
+        for language in Language.objects.all():
+            code += f'    "{language.code}": {{\n'
+            for string in String.objects.filter(language=language, in_use=True):
+                english = string.english.replace('"', '\\"')
+                translation = string.translation.replace('"', '\\"')
+                code += f'        "{english}": "{translation}",\n'
+            code += "    },\n"
+        code += "}\n\n\n"
+        code += f"def tr(string, lang):\n    return translations.get(lang, {{}}).get(string, string)\n"
+
+        with open("app/translation.py", "w") as f:
+            f.write(code)
 
         print("\nChecking for untranslated strings in the templates:\n")
         for path in Path("app/templates").rglob("*"):

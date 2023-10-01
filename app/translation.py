@@ -30,7 +30,6 @@ translations = {
         "Set your account details": "Set your account details",
         "Verify password": "Verify password",
         "Sign me up": "Sign me up",
-        "Unable to generate code due to quotes": "Unable to generate code due to quotes",
     },
     "de": {
         "Log me in": "Melde mich an",
@@ -63,7 +62,6 @@ translations = {
         "Set your account details": "Legen Sie Ihre Kontodaten fest",
         "Verify password": "Passwort bestätigen",
         "Sign me up": "Melden Sie mich an",
-        "Unable to generate code due to quotes": "Code kann aufgrund von Anführungszeichen nicht generiert werden",
     },
 }
 
