@@ -1,7 +1,0 @@
-New booking on Beatmatcher
-
-Somebody has made a new booking request for your DJ services.
-
-Check out your booking requests at the following URL:
-
-{{ url }}

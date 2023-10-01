@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load translation %}
+
+{% block content %}
+  <div class="mui-container-fluid">
+    <div class="mui-row">
+      <div class="mui-col-md-4 mui-col-md-offset-4">
+        <form class="mui-form" method="post">
+          {% csrf_token %}
+          <legend>{{ "Sign up"|tr:lang }}</legend>
+          <div class="mui-textfield mui-textfield--float-label">
+            <input type="text" name="email" value="{{ email }}">
+            <label>{{ "Email address"|tr:lang }}</label>
+            {% if errors.email %}
+              <p class="mui--text-danger">{{ errors.email }}</p>
+            {% endif %}
+          </div>
+          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">{{ "Sign me up"|tr:lang }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

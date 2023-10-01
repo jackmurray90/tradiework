@@ -1,0 +1,36 @@
+{% load translation %}
+
+<div class="footer mui-container-fluid light-background">
+  <div class="mui-row">
+    <div class="mui-col-lg-2 mui-col-sm-6 mui-col-lg-offset-2">
+      <h3>{{ "Language"|tr:lang }}</h3>
+      <div class="mui-dropdown mui-dropdown--up">
+        <button class="mui-btn mui-btn--fab mui-btn--primary" data-mui-toggle="dropdown">
+          <span class="material-symbols-outlined">{{ "language" }}</span>
+        </button>
+        <ul class="mui-dropdown__menu">
+          <li><a href="/en{{ request.get_full_path|slice:"3:" }}">{{ "English" }}</a></li>
+          <li><a href="/de{{ request.get_full_path|slice:"3:" }}">{{ "Deutsch" }}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mui-col-lg-2 mui-col-sm-6">
+      <h3>{{ "Services"|tr:lang }}</h3>
+      <ul>
+        <li><a href="{% url "web-development" lang=lang %}">{{ "Web development"|tr:lang }}</a></li>
+      </ul>
+    </div>
+    <div class="mui-col-lg-2 mui-col-sm-6">
+      <h3>{{ "About us"|tr:lang }}</h3>
+      <ul>
+        <li><a href="{% url "concept" lang=lang %}">{{ "Read about our concept"|tr:lang }}</a></li>
+      </ul>
+    </div>
+    <div class="mui-col-lg-2 mui-col-sm-6">
+      <h3>{{ "Support"|tr:lang }}</h3>
+      <ul>
+        <li><a href="mailto:support@{{ SITE_HOST }}">{{ "support@" }}{{ SITE_HOST }}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

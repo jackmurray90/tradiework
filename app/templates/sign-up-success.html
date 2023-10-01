@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load translation %}
+
+{% block content %}
+  <div class="mui-container-fluid">
+    <div class="mui-row">
+      <div class="mui-col-md-4 mui-col-md-offset-4">
+        {{ "Please check your email for the next step."|tr:lang }}
+      </div>
+    </div>
+  </div>
+{% endblock %}

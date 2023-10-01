@@ -1,7 +1,0 @@
-Neue Buchung auf Beatmatcher
-
-Jemand hat eine neue Buchungsanfrage für Ihre DJ-Dienste gestellt.
-
-Schauen Sie sich Ihre Buchungsanfragen unter der folgenden URL an:
-
-{{ url }}

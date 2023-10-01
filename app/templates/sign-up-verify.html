@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load translation %}
+
+{% block content %}
+  <div class="mui-container-fluid">
+    <div class="mui-row">
+      <div class="mui-col-md-4 mui-col-md-offset-4">
+        <form class="mui-form" method="post">
+          {% csrf_token %}
+          <legend>{{ "Set your account details"|tr:lang }}</legend>
+          {% if error %}
+            <p class="mui--text-danger">
+              {{ error }}
+            </p>
+          {% endif %}
+          <div class="mui-textfield mui-textfield--float-label">
+            <input type="text" name="username" value="{{ username }}">
+            <label>{{ "Username"|tr:lang }}</label>
+            {% if errors.username %}
+              <p class="mui--text-danger">{{ errors.username }}</p>
+            {% endif %}
+          </div>
+          <div class="mui-textfield mui-textfield--float-label">
+            <input type="password" name="password">
+            <label>{{ "Password"|tr:lang }}</label>
+            {% if errors.password %}
+              <p class="mui--text-danger">{{ errors.password }}</p>
+            {% endif %}
+          </div>
+          <div class="mui-textfield mui-textfield--float-label">
+            <input type="password" name="password-verify">
+            <label>{{ "Verify password"|tr:lang }}</label>
+          </div>
+          <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">{{ "Set your account details"|tr:lang }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

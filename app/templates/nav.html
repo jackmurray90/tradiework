@@ -1,0 +1,26 @@
+{% load static %}
+{% load translation %}
+
+<div id="nav" class="light-background">
+  <div>
+    <img src="{% static "logo.png" %}" class="logo">
+    <a class="title" href="{{ SITE_URL }}">{{ SITE_TITLE }}</a>
+  </div>
+  <ul>
+    <li><a href="{% url "concept" lang=lang %}">{{ "Concept"|tr:lang }}</a></li>
+    {% if user.is_authenticated %}
+      <li><a href="{% url "account" lang=lang %}">{{ "Account"|tr:lang }}</a></li>
+      <li><a href="{% url "log-out" lang=lang %}">{{ "Log out"|tr:lang }}</a></li>
+    {% else %}
+      <li><a href="{% url "sign-up" lang=lang %}">{{ "Sign up"|tr:lang }}</a></li>
+      <li><a href="{% url "log-in" lang=lang %}">{{ "Log in"|tr:lang }}</a></li>
+    {% endif %}
+    <li class="hamburger">
+      <a href="javascript:void(0);" onclick="toggleNavbarHamburger()">
+        <div class="bar-1"></div>
+        <div class="bar-2"></div>
+        <div class="bar-3"></div>
+      </a>
+    </li>
+  </ul>
+</div>
