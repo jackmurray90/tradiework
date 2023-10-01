@@ -1,4 +1,4 @@
-tr = {
+translations = {
     "en": {
         "Services": "Services",
         "Log me in": "Log me in",
@@ -30,10 +30,7 @@ tr = {
         "Set your account details": "Set your account details",
         "Verify password": "Verify password",
         "Sign me up": "Sign me up",
-        "translation": "translation",
-        "name": "name",
-        "admin-language.html": "admin-language.html",
-        "code": "code",
+        "Unable to generate code due to quotes": "Unable to generate code due to quotes",
     },
     "de": {
         "Log me in": "Melde mich an",
@@ -66,9 +63,7 @@ tr = {
         "Set your account details": "Legen Sie Ihre Kontodaten fest",
         "Verify password": "Passwort bestätigen",
         "Sign me up": "Melden Sie mich an",
-        "translation": "Übersetzung",
-        "name": "Name",
-        "admin-language.html": "admin-sprache.html",
+        "Unable to generate code due to quotes": "Code kann aufgrund von Anführungszeichen nicht generiert werden",
     },
 }
 
