@@ -18,6 +18,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SITE_TITLE = "Django MUI"
 SITE_DESCRIPTION = "A template for bootstrapping Django projects with MUI CSS."
 
+# Enable this and login with `gcloud auth login` to enable automatic translation.
+GOOGLE_CLOUD_PROJECT_ID = None
+
 ################################################################################
 # Change these settings in production
 ################################################################################
@@ -38,7 +41,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_PORT = 465
 EMAIL_HOST_USER = "apikey"
-EMAIL_HOST_PASSWORD = "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"
+EMAIL_HOST_PASSWORD = "<API Key goes here>"
 EMAIL_USE_SSL = True
 
 ################################################################################
