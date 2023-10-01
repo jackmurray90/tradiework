@@ -69,11 +69,11 @@ class Form:
     # Reserved field names
     # request, title, elements, is_valid, error
     def __init__(self, request):
+        lang = request.path[1:3]
         self.request = request
-        self.title = self.__class__.__title__
+        self.title = tr(self.__class__.__title__, lang)
         self.elements = []
         self.is_valid = bool(request.POST)
-        lang = request.path[1:3]
         for name, element in self.get_elements():
             element = copy(element)
             if isinstance(element, Field):
@@ -88,20 +88,26 @@ class Form:
             element.translate(lang)
             self.elements.append(element)
         if request.POST:
-            self.error = self.validate(lang)
-            if self.error:
-                self.is_valid = False
+            self.validate(lang)
 
     def get_elements(self):
         return [
-            (key, self.__class__.__dict__[key]) for key in self.__class__.__dict__.keys() if not key.startswith("__")
+            (key, self.__class__.__dict__[key])
+            for key in self.__class__.__dict__.keys()
+            if not key.startswith("__") and key not in "validate"
         ]
 
     def validate(self, lang):
         return None
 
-    def add_error(self, error):
-        self.error = error
+    def add_error(self, *args):
+        if len(args) == 1:
+            self.error = args[0]
+        else:
+            for element in self.elements:
+                if element.name == args[0]:
+                    element.error = args[1]
+                    break
         self.is_valid = False
 
     def render(self):
