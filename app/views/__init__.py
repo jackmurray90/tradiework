@@ -19,22 +19,22 @@ class RedirectToLanguageView(View):
             if lang in request.LANGUAGE_CODE:
                 break
         else:
-            lang = "en"
-        return redirect("index", lang=lang)
+            lang = f"en"
+        return redirect(f"index", lang=lang)
 
 
 class ConceptView(View):
     def get(self, request, lang):
-        return render(request, "concept.html")
+        return render(request, f"concept.html")
 
 
 class WebDevelopmentView(View):
     def get(self, request, lang):
-        return render(request, "web-development.html")
+        return render(request, f"web-development.html")
 
 
 class AccountView(View):
     def get(self, request, lang):
         if not request.user.is_authenticated:
-            return redirect("log-in", lang=lang)
-        return render(request, "account.html")
+            return redirect(f"log-in", lang=lang)
+        return render(request, f"account.html")

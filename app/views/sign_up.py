@@ -25,7 +25,7 @@ class SignUpForm(forms.Form):
         # Check that a user with that email doesn't already exist
         user = User.objects.filter(email=self.email).first()
         if user:
-            self.add_error("email", tr(USER_ALREADY_EXISTS, lang))
+            self.add_error(f"email", tr(USER_ALREADY_EXISTS, lang))
 
 
 class SignUpVerifyForm(forms.Form):
@@ -39,7 +39,7 @@ class SignUpVerifyForm(forms.Form):
         # Verify username is valid
         if not is_valid_username(self.username):
             self.add_error(
-                "username",
+                f"username",
                 tr(
                     "Invalid username. Must be 150 characters or fewer. Usernames may contain alphanumeric, _, @, +, . and - characters.",
                     lang,
@@ -52,13 +52,13 @@ class SignUpVerifyForm(forms.Form):
 class SignUpView(View):
     def get(self, request, lang):
         form = SignUpForm(request)
-        return render(request, "sign-up.html", {"form": form})
+        return render(request, f"sign-up.html", {f"form": form})
 
     def post(self, request, lang):
         form = SignUpForm(request)
 
         if not form.is_valid:
-            return render(request, "sign-up.html", {"form": form})
+            return render(request, f"sign-up.html", {f"form": form})
 
         # Create the email verification code
         sign_up = SignUp.objects.create(
@@ -70,27 +70,27 @@ class SignUpView(View):
         # Generate the email
         plaintext = get_template(f"emails/sign-up-{lang}.txt")
         html = get_template(f"emails/sign-up-{lang}.html")
-        subject = tr(f"Welcome to {settings.SITE_TITLE}", lang)
+        subject = tr("Welcome to %s", lang) % settings.SITE_TITLE
         from_email = f"no-reply@{request.get_host()}"
         to = sign_up.email
         text_content = plaintext.render(
-            {"url": request.build_absolute_uri(reverse("sign-up-verify", kwargs={"lang": lang, "code": sign_up.code}))}
+            {f"url": request.build_absolute_uri(reverse(f"sign-up-verify", kwargs={f"lang": lang, f"code": sign_up.code}))}
         )
         html_content = html.render(
-            {"url": request.build_absolute_uri(reverse("sign-up-verify", kwargs={"lang": lang, "code": sign_up.code}))}
+            {f"url": request.build_absolute_uri(reverse(f"sign-up-verify", kwargs={f"lang": lang, f"code": sign_up.code}))}
         )
 
         # Create the email message with the content and send it
         message = EmailMultiAlternatives(subject, text_content, from_email, [to])
-        message.attach_alternative(html_content, "text/html")
+        message.attach_alternative(html_content, f"text/html")
         message.send()
 
-        return redirect("sign-up-success", lang=lang)
+        return redirect(f"sign-up-success", lang=lang)
 
 
 class SignUpSuccessView(View):
     def get(self, request, lang):
-        return render(request, "sign-up-success.html")
+        return render(request, f"sign-up-success.html")
 
 
 class SignUpVerifyView(View):
@@ -101,38 +101,38 @@ class SignUpVerifyView(View):
         sign_up = SignUp.objects.filter(code=code, expiry__gte=datetime.now(timezone.utc)).first()
         if not sign_up:
             form.add_error(tr(INVALID_CODE, lang))
-            return render(request, "sign-up-verify.html", {"form": form})
+            return render(request, f"sign-up-verify.html", {f"form": form})
 
         # Verify a user with that email doesn't already exist
         if User.objects.filter(email=sign_up.email).first():
             form.add_error(tr(USER_ALREADY_EXISTS, lang))
-            return render(request, "sign-up-verify.html", {"form": form})
+            return render(request, f"sign-up-verify.html", {f"form": form})
 
         # Render the template to set password
-        return render(request, "sign-up-verify.html", {"form": form})
+        return render(request, f"sign-up-verify.html", {f"form": form})
 
     def post(self, request, lang, code):
         form = SignUpVerifyForm(request)
 
         if not form.is_valid:
-            return render(request, "sign-up-verify.html", {"form": form})
+            return render(request, f"sign-up-verify.html", {f"form": form})
 
         # Verify the sign up code is correct
         sign_up = SignUp.objects.filter(code=code, expiry__gte=datetime.now(timezone.utc)).first()
         if not sign_up:
             form.add_error(tr(INVALID_CODE, lang))
-            return render(request, "sign-up-verify.html", {"form": form})
+            return render(request, f"sign-up-verify.html", {f"form": form})
 
         with update_user_lock:
             # Verify a user with that email doesn't already exist
             if User.objects.filter(email=sign_up.email).first():
                 form.add_error(tr(USER_ALREADY_EXISTS, lang))
-                return render(request, "sign-up-verify.html", {"form": form})
+                return render(request, f"sign-up-verify.html", {f"form": form})
 
             # Verify username is not taken.
             if User.objects.filter(username__iexact=form.username).first():
-                form.add_error("username", tr("That username is taken.", lang))
-                return render(request, "sign-up-verify.html", {"form": form})
+                form.add_error(f"username", tr("That username is taken.", lang))
+                return render(request, f"sign-up-verify.html", {f"form": form})
 
             # Create the user and set their password
             user = User.objects.create(username=form.username, email=sign_up.email)
@@ -148,4 +148,4 @@ class SignUpVerifyView(View):
         # Log in the user
         login(request, user)
 
-        return redirect("account", lang=lang)
+        return redirect(f"account", lang=lang)

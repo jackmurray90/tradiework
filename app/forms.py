@@ -25,8 +25,7 @@ class Field(Element):
 
 
 class CharField(Field):
-    type = "text"
-    MAXIMUM_CHARACTERS = "%s can be a maximum of %s characters."
+    type = f"text"
 
     def __init__(self, label, model_field=None, required=True):
         self.label = label
@@ -37,11 +36,11 @@ class CharField(Field):
         if self.required and not self.value:
             return tr(self.IS_REQUIRED, lang) % tr(self.label, lang)
         if self.max_length is not None and len(self.value) > self.max_length:
-            return tr(self.MAXIMUM_CHARACTERS, lang) % (tr(self.label, lang), self.max_length)
+            return tr("%s can be a maximum of %s characters.", lang) % (tr(self.label, lang), self.max_length)
 
 
 class PasswordField(Field):
-    type = "password"
+    type = f"password"
 
     def __init__(self, label, required=True):
         self.label = label
@@ -51,18 +50,12 @@ class PasswordField(Field):
         if self.required and not self.value:
             return tr(self.IS_REQUIRED, lang) % tr(self.label, lang)
 
-    def get_translation_strings(self):
-        return [self.IS_REQUIRED, self.label]
-
 
 class SubmitButton(Element):
-    type = "submit-button"
+    type = f"submit-button"
 
     def __init__(self, label):
         self.label = label
-
-    def get_translation_strings(self):
-        return [self.label]
 
 
 class Form:
@@ -94,7 +87,7 @@ class Form:
         return [
             (key, self.__class__.__dict__[key])
             for key in self.__class__.__dict__.keys()
-            if not key.startswith("__") and key not in "validate"
+            if not key.startswith(f"__") and key not in f"validate"
         ]
 
     def validate(self, lang):
@@ -111,4 +104,4 @@ class Form:
         self.is_valid = False
 
     def render(self):
-        return mark_safe(loader.render_to_string("form.html", {"form": self}, self.request))
+        return mark_safe(loader.render_to_string(f"form.html", {f"form": self}, self.request))

@@ -16,23 +16,23 @@ class LogInForm(forms.Form):
 class LogInView(View):
     def get(self, request, lang):
         form = LogInForm(request)
-        return render(request, "log-in.html", {"form": form})
+        return render(request, f"log-in.html", {f"form": form})
 
     def post(self, request, lang):
         form = LogInForm(request)
         if not form.is_valid:
-            return render(request, "log-in.html", {"form": form})
+            return render(request, f"log-in.html", {f"form": form})
 
         user = authenticate(request, username=form.email, password=form.password)
         if user is None:
             form.add_error(tr("Invalid email address or password.", lang))
-            return render(request, "log-in.html", {"form": form})
+            return render(request, f"log-in.html", {f"form": form})
 
         login(request, user)
-        return redirect("account", lang=lang)
+        return redirect(f"account", lang=lang)
 
 
 class LogOutView(View):
     def get(self, request, lang):
         logout(request)
-        return render(request, "log-out.html")
+        return render(request, f"log-out.html")
