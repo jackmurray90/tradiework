@@ -12,7 +12,6 @@ translations = {
         "Invalid email address or password.": "Invalid email address or password.",
         "Username": "Username",
         "Concept": "Concept",
-        "Web development": "Web development",
         "%s can be a maximum of %s characters.": "%s can be a maximum of %s characters.",
         "Email address": "Email address",
         "Please check your email for the next step.": "Please check your email for the next step.",
@@ -33,6 +32,8 @@ translations = {
         "Check/Edit languages": "Check/Edit languages",
         "Save": "Save",
         "Purge unused": "Purge unused",
+        "List links to your services here": "List links to your services here",
+        "Information about your account goes here": "Information about your account goes here",
     },
     "de": {
         "Log me in": "Melde mich an",
@@ -47,7 +48,6 @@ translations = {
         "Invalid email address or password.": "Ungültige Emailadresse oder Passwort.",
         "Username": "Nutzername",
         "Concept": "Konzept",
-        "Web development": "Web Entwicklung",
         "%s can be a maximum of %s characters.": "%s kann maximal %s Zeichen lang sein.",
         "Email address": "E-Mail-Adresse",
         "Please check your email for the next step.": "Bitte überprüfen Sie Ihre E-Mails für den nächsten Schritt.",
@@ -68,6 +68,8 @@ translations = {
         "Check/Edit languages": "Sprachen prüfen/bearbeiten",
         "Save": "Speichern",
         "Purge unused": "Nicht verwendetes löschen",
+        "List links to your services here": "Listen Sie hier Links zu Ihren Dienstleistungen auf",
+        "Information about your account goes here": "Informationen zu Ihrem Konto finden Sie hier",
     },
 }
 
