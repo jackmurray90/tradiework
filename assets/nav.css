@@ -45,6 +45,8 @@ body {
 }
 #nav .logo {
   display: block;
+}
+#nav .logo img {
   height: 5em;
   padding: 0 0.5em 0 2em;
 }
