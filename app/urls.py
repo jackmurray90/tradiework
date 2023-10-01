@@ -7,7 +7,6 @@ from app.views import (
     SignUpVerifyView,
     LogOutView,
     ConceptView,
-    WebDevelopmentView,
     AccountView,
     AdminLanguageView,
 )
@@ -24,7 +23,6 @@ urlpatterns = [
     path("<lang>/sign-up/verify/<code>", SignUpVerifyView.as_view(), name="sign-up-verify"),
     # Static Pages
     path("<lang>/concept", ConceptView.as_view(), name="concept"),
-    path("<lang>/web-development", WebDevelopmentView.as_view(), name="web-development"),
     # Accounts
     path("<lang>/account", AccountView.as_view(), name="account"),
     # Admin

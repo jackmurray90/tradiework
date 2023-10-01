@@ -28,11 +28,6 @@ class ConceptView(View):
         return render(request, f"concept.html")
 
 
-class WebDevelopmentView(View):
-    def get(self, request, lang):
-        return render(request, f"web-development.html")
-
-
 class AccountView(View):
     def get(self, request, lang):
         if not request.user.is_authenticated:
