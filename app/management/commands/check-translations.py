@@ -43,7 +43,7 @@ class Command(BaseCommand):
                 with open(path, "r") as f:
                     text = f.read()
                     for format_char, string, _ in re.findall(python_string_regex, text):
-                        if format_char != 'f':
+                        if format_char != "f":
                             all_strings.add(string)
                             if not String.objects.filter(language__code="en", english=string).first():
                                 print(path, string)
