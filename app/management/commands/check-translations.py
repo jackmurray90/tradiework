@@ -95,8 +95,8 @@ class Command(BaseCommand):
         for language in Language.objects.all():
             code += f'    "{language.code}": {{\n'
             for string in String.objects.filter(language=language, in_use=True):
-                english = string.english.replace('"', '\\"')
-                translation = string.translation.replace('"', '\\"')
+                english = string.english.replace("\\", "\\\\").replace('"', '\\"')
+                translation = string.translation.replace("\\", "\\\\").replace('"', '\\"')
                 code += f'        "{english}": "{translation}",\n'
             code += "    },\n"
         code += "}\n\n\n"
