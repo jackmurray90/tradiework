@@ -1,23 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views import View
-from app.translation import tr, register
+from app.translation import tr
 from app.models import User
 from app import forms
 
 
-LOG_IN = register("Log in")
-EMAIL = register("Email")
-PASSWORD = register("Password")
-LOG_ME_IN = register("Log me in")
-INVALID_LOG_IN = register("Invalid email address or password.")
-
-
 class LogInForm(forms.Form):
-    __title__ = LOG_IN
-    email = forms.CharField(EMAIL, User.email)
-    password = forms.PasswordField(PASSWORD)
-    submit = forms.SubmitButton(LOG_ME_IN)
+    __title__ = "Log in"
+    email = forms.CharField("Email address", User.email)
+    password = forms.PasswordField("Password")
+    submit = forms.SubmitButton("Log me in")
 
 
 class LogInView(View):
@@ -32,7 +25,7 @@ class LogInView(View):
 
         user = authenticate(request, username=form.email, password=form.password)
         if user is None:
-            form.add_error(tr(INVALID_LOG_IN, lang))
+            form.add_error(tr("Invalid email address or password.", lang))
             return render(request, "log-in.html", {"form": form})
 
         login(request, user)

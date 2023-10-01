@@ -1,6 +1,6 @@
 from django.utils.safestring import mark_safe
 from django.template import loader
-from app.translation import tr, register
+from app.translation import tr
 from copy import copy
 
 
@@ -12,7 +12,7 @@ class Element:
 
 
 class Field(Element):
-    IS_REQUIRED = register("%s is required.")
+    IS_REQUIRED = "%s is required."
 
     def set_name(self, name):
         self.name = name
@@ -26,7 +26,7 @@ class Field(Element):
 
 class CharField(Field):
     type = "text"
-    MAXIMUM_CHARACTERS = register("%s can be a maximum of %s characters.")
+    MAXIMUM_CHARACTERS = "%s can be a maximum of %s characters."
 
     def __init__(self, label, model_field=None, required=True):
         self.label = label
