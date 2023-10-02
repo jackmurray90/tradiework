@@ -35,6 +35,9 @@ translations = {
         "List links to your services here": "List links to your services here",
         "Information about your account goes here": "Information about your account goes here",
         "String": "String",
+        "%s must be an integer.": "%s must be an integer.",
+        "%s is too large. Maximum file size is %s": "%s is too large. Maximum file size is %s",
+        "%s must be a positive integer.": "%s must be a positive integer.",
     },
     "de": {
         "Log me in": "Melde mich an",
@@ -72,6 +75,9 @@ translations = {
         "List links to your services here": "Listen Sie hier Links zu Ihren Dienstleistungen auf",
         "Information about your account goes here": "Informationen zu Ihrem Konto finden Sie hier",
         "String": "Zeichenfolge",
+        "%s must be an integer.": "%s muss eine Ganzzahl sein.",
+        "%s is too large. Maximum file size is %s": "%s ist zu groß. Die maximale Dateigröße beträgt %s",
+        "%s must be a positive integer.": "%s muss eine positive Ganzzahl sein.",
     },
 }
 
