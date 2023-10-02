@@ -10,3 +10,10 @@ html, body {
   padding: 0;
   background-color: rgb(210, 200, 190);
 }
+.filefield .label {
+  color: rgb(110, 130, 120);
+  font-size: small;
+}
+.filefield input[type="file"] {
+  display: none;
+}

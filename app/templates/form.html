@@ -1,6 +1,15 @@
 {% load translation %}
 
-<form class="mui-form" method="post">
+<form
+  class="mui-form"
+  method="post"
+  {% if form.action %}
+    action="{{ form.action }}"
+  {% endif %}
+  {% if form.enctype %}
+    enctype="{{ form.enctype }}"
+  {% endif %}
+>
   {% csrf_token %}
   <legend>{{ form.title }}</legend>
   {% if form.error %}
@@ -45,6 +54,48 @@
           <p class="mui--text-danger">
             {{ element.error }}
           </p>
+        {% endif %}
+      </div>
+    {% elif element.type == "textarea" %}
+      <div class="mui-textfield mui-textfield--float-label">
+        <textarea
+          name="{{ element.name }}"
+          {% if element.max_length %}
+            maxlength="{{ element.max_length }}"
+          {% endif %}
+          {% if element.required %}
+            required
+          {% endif %}
+        >{% if element.value %}{{ element.value }}{% endif %}</textarea>
+        <label>{{ element.label }}</label>
+        {% if element.error %}
+          <p class="mui--text-danger">{{ element.error }}</p>
+        {% endif %}
+      </div>
+    {% elif element.type == "file" %}
+      <div class="filefield">
+        <p class="label">{{ element.label }}</p>
+        <label
+          for="filefield-{{ form.form_id }}-{{ element.name }}"
+          class="mui-btn mui-btn--primary mui-btn--raised"
+          id="filefield-{{ form.form_id }}-{{ element.name }}-text"
+        >
+          {{ element.button_text }}
+        </label>
+        {% if element.information_text %}
+          <p>{{ element.information_text }}</p>
+        {% endif %}
+        <input
+          id="filefield-{{ form.form_id }}-{{ element.name }}"
+          type="file"
+          name="{{ element.name }}"
+          onchange="filefield_update_filename('{{ form.form_id }}', '{{ element.name }}')"
+          {% if element.required %}
+            required
+          {% endif %}
+        >
+        {% if element.error %}
+          <p class="mui--text-danger">{{ element.error }}</p>
         {% endif %}
       </div>
     {% elif element.type == "submit-button" %}
