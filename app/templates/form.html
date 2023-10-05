@@ -106,6 +106,25 @@
           <p class="mui--text-danger">{{ element.error }}</p>
         {% endif %}
       </div>
+    {% elif element.type == "select" %}
+      <div class="mui-select">
+        <select name="{{ element.name }}">
+          {% for choice in element.choices %}
+            <option
+              value="{{ choice.0 }}"
+              {% if element.value == choice.0 %}
+                selected
+              {% endif %}
+            >
+              {{ choice.1 }}
+            </option>
+          {% endfor %}
+        </select>
+        <label>{{ element.label }}</label>
+        {% if element.error %}
+          <p class="mui--text-danger">{{ element.error }}</p>
+        {% endif %}
+      </div>
     {% elif element.type == "submit-button" %}
       <button
         type="submit"

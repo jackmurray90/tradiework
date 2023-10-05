@@ -133,8 +133,27 @@ class HiddenField(Field):
             # Does not need translation as field is hidden.
             return f"Invalid"
 
-    def translate(self):
+    def translate(self, tr):
         pass
+
+
+class SelectField(Field):
+    type = f"select"
+
+    def __init__(self, label, model_field, required=True):
+        self.label = label
+        self.choices = [(f"", "Please select an option")] + model_field.field.choices
+        self.required = True
+
+    def validate(self, tr):
+        if self.value not in set([x for x, _ in self.choices]):
+            return tr("Invalid selection")
+        if not self.value and self.required:
+            return tr("Must selection an option")
+
+    def translate(self, tr):
+        self.label = tr(self.label)
+        self.choices = [(value, tr(label)) for value, label in self.choices]
 
 
 class SubmitButton(Element):
