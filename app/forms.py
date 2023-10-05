@@ -123,7 +123,7 @@ class IntegerField(Field):
 class HiddenField(Field):
     type = f"hidden"
 
-    def __init__(self, label, model_field=None, required=True):
+    def __init__(self, model_field=None):
         self.choices = None
         if model_field and model_field.field.choices is not None:
             self.choices = set([x for x, _ in model_field.field.choices])
@@ -143,7 +143,7 @@ class SelectField(Field):
     def __init__(self, label, model_field, required=True):
         self.label = label
         self.choices = [(f"", "Please select an option")] + model_field.field.choices
-        self.required = True
+        self.required = required
 
     def validate(self, tr):
         if self.value not in set([x for x, _ in self.choices]):
