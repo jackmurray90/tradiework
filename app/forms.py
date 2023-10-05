@@ -123,6 +123,16 @@ class IntegerField(Field):
 class HiddenField(Field):
     type = f"hidden"
 
+    def __init__(self, label, model_field=None, required=True):
+        self.choices = None
+        if model_field and model_field.field.choices is not None:
+            self.choices = set([x for x, _ in model_field.field.choices])
+
+    def validate(self, tr):
+        if self.choices is not None and self.value not in self.choices:
+            # Does not need translation as field is hidden.
+            return f"Invalid"
+
     def translate(self):
         pass
 
