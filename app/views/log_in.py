@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views import View
-from app.translation import tr
 from app.models import User
 from app import forms
 
@@ -14,25 +13,25 @@ class LogInForm(forms.Form):
 
 
 class LogInView(View):
-    def get(self, request, lang):
+    def get(self, request, tr):
         form = LogInForm(request)
         return render(request, f"log-in.html", {f"form": form})
 
-    def post(self, request, lang):
+    def post(self, request, tr):
         form = LogInForm(request)
         if not form.is_valid:
             return render(request, f"log-in.html", {f"form": form})
 
         user = authenticate(request, username=form.email, password=form.password)
         if user is None:
-            form.add_error(tr("Invalid email address or password.", lang))
+            form.add_error(tr("Invalid email address or password."))
             return render(request, f"log-in.html", {f"form": form})
 
         login(request, user)
-        return redirect(f"account", lang=lang)
+        return redirect(f"account")
 
 
 class LogOutView(View):
-    def get(self, request, lang):
+    def get(self, request, tr):
         logout(request)
         return render(request, f"log-out.html")

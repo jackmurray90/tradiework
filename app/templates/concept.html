@@ -4,11 +4,11 @@
   <div class="mui-container-fluid">
     <div class="mui-row">
       <div class="mui-col-md-4 mui-col-md-offset-4">
-        <p>This site is a template project for bootstrapping start-up sites that require user accounts.</p>
-        <p>The frameworks in use are Django and Material UI CSS.</p>
-        <p>I'm not a big fan of modern single-page applications, frameworks like React, and Angular, I think they're way too complicated for small startups.</p>
-        <p>So I created this boilerplate. The code can be found at <a href="https://github.com/jackmurray90/django-mui">https://github.com/jackmurray90/django-mui</a>.</p>
-        <p>I've also added support for multiple languages, a script that automatically translates untranslated strings using Google Translate, and an interface for modifying the translated strings.</p>
+        <p>{% tr "This site is a template project for bootstrapping start-up sites that require user accounts." %}</p>
+        <p>{% tr "The frameworks in use are Django and Material UI CSS." %}</p>
+        <p>{% tr "I'm not a big fan of modern single-page applications, frameworks like React, and Angular, I think they're way too complicated for small startups." %}</p>
+        <p>{% tr "So I created this boilerplate. The code can be found at" %} <a href="https://github.com/jackmurray90/django-mui">{{ "https://github.com/jackmurray90/django-mui" }}</a></p>
+        <p>{% tr "I've also added support for multiple languages, a script that automatically translates untranslated strings using Google Translate, and an interface for modifying the translated strings." %}</p>
       </div>
     </div>
   </div>

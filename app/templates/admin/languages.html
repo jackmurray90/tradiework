@@ -14,10 +14,10 @@
       <div class="mui-col-md-10 mui-col-md-offset-1">
         <form class="mui-form" method="post">
           {% csrf_token %}
-          <legend>{{ "Check/Edit languages"|tr:lang }}</legend>
+          <legend>{% tr "Check/Edit languages" %}</legend>
           <table>
             <tr>
-              <th>{{ "String"|tr:lang }}</th>
+              <th>{% tr "String" %}</th>
               {% for language in strings.0 %}
                 <th>{{ language.name }}</th>
               {% endfor %}
@@ -53,14 +53,14 @@
           <div class="mui-checkbox">
             <label>
               <input type="checkbox" name="purge" value="true">
-              {{ "Purge unused"|tr:lang }}
+              {% tr "Purge unused" %}
             </label>
           </div>
           <button
             type="submit"
             class="mui-btn mui-btn--primary mui-btn--raised"
           >
-            {{ "Save"|tr:lang }}
+            {% tr "Save" %}
           </button>
         </form>
       </div>

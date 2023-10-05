@@ -3,31 +3,32 @@
 <div class="footer mui-container-fluid light-background">
   <div class="mui-row">
     <div class="mui-col-lg-2 mui-col-sm-6 mui-col-lg-offset-2">
-      <h3>{{ "Language"|tr:lang }}</h3>
+      <h3>{% tr "Language" %}</h3>
       <div class="mui-dropdown mui-dropdown--up">
         <button class="mui-btn mui-btn--fab mui-btn--primary" data-mui-toggle="dropdown">
           <span class="material-symbols-outlined">{{ "language" }}</span>
         </button>
         <ul class="mui-dropdown__menu">
-          <li><a href="/en{{ request.get_full_path|slice:"3:" }}">{{ "English" }}</a></li>
-          <li><a href="/de{{ request.get_full_path|slice:"3:" }}">{{ "Deutsch" }}</a></li>
+          {% for language in LANGUAGES %}
+            <li><a href="#" onclick="change_language('{% url "change-language" %}', '{{ CSRF_TOKEN }}', '{{ language.code }}'); return false;">{{ language.name }}</a></li>
+          {% endfor %}
         </ul>
       </div>
     </div>
     <div class="mui-col-lg-2 mui-col-sm-6">
-      <h3>{{ "Services"|tr:lang }}</h3>
+      <h3>{% tr "Services" %}</h3>
       <ul>
-        <li>{{ "List links to your services here"|tr:lang }}</li>
+        <li>{% tr "List links to your services here" %}</li>
       </ul>
     </div>
     <div class="mui-col-lg-2 mui-col-sm-6">
-      <h3>{{ "About us"|tr:lang }}</h3>
+      <h3>{% tr "About us" %}</h3>
       <ul>
-        <li><a href="{% url "concept" lang=lang %}">{{ "Read about our concept"|tr:lang }}</a></li>
+        <li><a href="{% url "concept" %}">{% tr "Read about our concept" %}</a></li>
       </ul>
     </div>
     <div class="mui-col-lg-2 mui-col-sm-6">
-      <h3>{{ "Support"|tr:lang }}</h3>
+      <h3>{% tr "Support" %}</h3>
       <ul>
         <li><a href="mailto:support@{{ SITE_HOST }}">{{ "support@" }}{{ SITE_HOST }}</a></li>
       </ul>

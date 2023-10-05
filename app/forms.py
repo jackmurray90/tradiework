@@ -1,6 +1,6 @@
 from django.utils.safestring import mark_safe
 from django.template import loader
-from app.translation import tr
+from app.translation import tr as app_tr
 from app.util import random_128_bit_string
 from copy import copy
 
@@ -8,8 +8,8 @@ from copy import copy
 class Element:
     # Translate all non-error strings required to be translated for this
     # element.
-    def translate(self, lang):
-        self.label = tr(self.label, lang)
+    def translate(self, tr):
+        self.label = tr(self.label)
 
 
 class Field(Element):
@@ -33,11 +33,11 @@ class CharField(Field):
         self.max_length = model_field.field.max_length if model_field else None
         self.required = required
 
-    def validate(self, lang):
+    def validate(self, tr):
         if self.required and not self.value:
-            return tr(self.IS_REQUIRED, lang) % tr(self.label, lang)
+            return tr(self.IS_REQUIRED) % tr(self.label)
         if self.max_length is not None and len(self.value) > self.max_length:
-            return tr("%s can be a maximum of %s characters.", lang) % (tr(self.label, lang), self.max_length)
+            return tr("%s can be a maximum of %s characters.") % (tr(self.label), self.max_length)
 
 
 class PasswordField(Field):
@@ -47,9 +47,9 @@ class PasswordField(Field):
         self.label = label
         self.required = required
 
-    def validate(self, lang):
+    def validate(self, tr):
         if self.required and not self.value:
-            return tr(self.IS_REQUIRED, lang) % tr(self.label, lang)
+            return tr(self.IS_REQUIRED) % tr(self.label)
 
 
 class TextField(Field):
@@ -59,9 +59,9 @@ class TextField(Field):
         self.label = label
         self.required = required
 
-    def validate(self, lang):
+    def validate(self, tr):
         if self.required and not self.value:
-            return tr(self.IS_REQUIRED, lang) % tr(self.label, lang)
+            return tr(self.IS_REQUIRED) % tr(self.label)
 
 
 class FileField(Field):
@@ -74,11 +74,11 @@ class FileField(Field):
         self.max_size = max_size
         self.required = required
 
-    def translate(self, lang):
-        self.label = tr(self.label, lang)
-        self.button_text = tr(self.button_text, lang)
+    def translate(self, tr):
+        self.label = tr(self.label)
+        self.button_text = tr(self.button_text)
         if self.information_text:
-            self.information_text = tr(self.information_text, lang)
+            self.information_text = tr(self.information_text)
 
     def max_size_readable(self):
         if self.max_size < 1024:
@@ -89,11 +89,11 @@ class FileField(Field):
             return f"{self.max_size/(1024*1024)} MB"
         return f"{self.max_size/(1024*1024*1024)} GB"
 
-    def validate(self, lang):
+    def validate(self, tr):
         if self.required and not self.value:
-            return tr(self.IS_REQUIRED, lang) % tr(self.label, lang)
+            return tr(self.IS_REQUIRED) % tr(self.label)
         if self.max_size and self.value and self.value.size > self.max_size:
-            return tr("%s is too large. Maximum file size is %s", lang) % (tr(self.label, lang), self.max_size_readable())
+            return tr("%s is too large. Maximum file size is %s") % (tr(self.label), self.max_size_readable())
 
 
 class IntegerField(Field):
@@ -104,9 +104,9 @@ class IntegerField(Field):
         self.positive = positive
         self.required = required
 
-    def validate(self, lang):
+    def validate(self, tr):
         if self.required and not self.value:
-            return tr(self.IS_REQUIRED, lang) % tr(self.label, lang)
+            return tr(self.IS_REQUIRED) % tr(self.label)
         try:
             if int(self.value) > 0:
                 is_positive = True
@@ -115,9 +115,9 @@ class IntegerField(Field):
             failed_to_parse = True
         if failed_to_parse or (self.positive and not is_positive):
             if self.positive:
-                return tr("%s must be a positive integer.", lang) % tr(self.label, lang)
+                return tr("%s must be a positive integer.") % tr(self.label)
             else:
-                return tr("%s must be an integer.", lang) % tr(self.label, lang)
+                return tr("%s must be an integer.") % tr(self.label)
 
 
 class SubmitButton(Element):
@@ -131,10 +131,10 @@ class Form:
     # Reserved field names
     # request, title, elements, is_valid, error
     def __init__(self, request, action=None, initial_values=None):
-        lang = request.path[1:3]
+        tr = lambda s: app_tr(s, request.session[f"language"])
         self.form_id = random_128_bit_string()
         self.request = request
-        self.title = tr(self.__class__.__title__, lang)
+        self.title = tr(self.__class__.__title__)
         self.action = action
         self.elements = []
         self.is_valid = bool(request.POST)
@@ -150,7 +150,7 @@ class Form:
                     else:
                         value = request.POST.get(name)
                     element.set_value(value)
-                    element.set_error(element.validate(lang))
+                    element.set_error(element.validate(tr))
                     self.__dict__[name] = value
                     if element.error:
                         self.is_valid = False
@@ -158,15 +158,15 @@ class Form:
                     value = initial_values.get(name)
                     element.set_value(value)
                     self.__dict__[name] = value
-            element.translate(lang)
+            element.translate(tr)
             self.elements.append(element)
         if request.POST:
-            self.validate(lang)
+            self.validate(tr)
 
     def get_elements(self):
         return [(key, self.__class__.__dict__[key]) for key in self.__class__.__dict__.keys() if not key.startswith(f"__") and key not in f"validate"]
 
-    def validate(self, lang):
+    def validate(self, tr):
         return None
 
     def add_error(self, *args):

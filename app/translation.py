@@ -38,6 +38,11 @@ translations = {
         "%s must be an integer.": "%s must be an integer.",
         "%s is too large. Maximum file size is %s": "%s is too large. Maximum file size is %s",
         "%s must be a positive integer.": "%s must be a positive integer.",
+        "This site is a template project for bootstrapping start-up sites that require user accounts.": "This site is a template project for bootstrapping start-up sites that require user accounts.",
+        "The frameworks in use are Django and Material UI CSS.": "The frameworks in use are Django and Material UI CSS.",
+        "I'm not a big fan of modern single-page applications, frameworks like React, and Angular, I think they're way too complicated for small startups.": "I'm not a big fan of modern single-page applications, frameworks like React, and Angular, I think they're way too complicated for small startups.",
+        "So I created this boilerplate. The code can be found at": "So I created this boilerplate. The code can be found at",
+        "I've also added support for multiple languages, a script that automatically translates untranslated strings using Google Translate, and an interface for modifying the translated strings.": "I've also added support for multiple languages, a script that automatically translates untranslated strings using Google Translate, and an interface for modifying the translated strings.",
     },
     "de": {
         "Log me in": "Melde mich an",
@@ -78,6 +83,11 @@ translations = {
         "%s must be an integer.": "%s muss eine Ganzzahl sein.",
         "%s is too large. Maximum file size is %s": "%s ist zu groß. Die maximale Dateigröße beträgt %s",
         "%s must be a positive integer.": "%s muss eine positive Ganzzahl sein.",
+        "This site is a template project for bootstrapping start-up sites that require user accounts.": "Bei dieser Site handelt es sich um ein Vorlagenprojekt zum Bootstrapping von Start-up-Sites, die Benutzerkonten erfordern.",
+        "The frameworks in use are Django and Material UI CSS.": "Die verwendeten Frameworks sind Django und Material UI CSS.",
+        "I'm not a big fan of modern single-page applications, frameworks like React, and Angular, I think they're way too complicated for small startups.": "Ich bin kein großer Fan von modernen Single-Page-Anwendungen, Frameworks wie React und Angular, ich denke, sie sind viel zu kompliziert für kleine Startups.",
+        "So I created this boilerplate. The code can be found at": "Also habe ich dieses Boilerplate erstellt. Den Code finden Sie unter",
+        "I've also added support for multiple languages, a script that automatically translates untranslated strings using Google Translate, and an interface for modifying the translated strings.": "Ich habe außerdem Unterstützung für mehrere Sprachen, ein Skript, das nicht übersetzte Zeichenfolgen mithilfe von Google Translate automatisch übersetzt, und eine Schnittstelle zum Ändern der übersetzten Zeichenfolgen hinzugefügt.",
     },
 }
 

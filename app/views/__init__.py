@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from django.views import View
+from django.http import HttpResponseBadRequest, HttpResponse
 from app.translation import translations
+from django.views import View
+from app.models import Language
 from app.views.sign_up import (
     SignUpView,
     SignUpSuccessView,
@@ -13,23 +15,26 @@ from app.views.log_in import (
 from app.views.admin import AdminLanguageView
 
 
-class RedirectToLanguageView(View):
-    def get(self, request):
-        for lang in translations:
-            if lang in request.LANGUAGE_CODE:
-                break
-        else:
-            lang = f"en"
-        return redirect(f"index", lang=lang)
-
-
 class ConceptView(View):
-    def get(self, request, lang):
+    def get(self, request, tr):
         return render(request, f"concept.html")
 
 
 class AccountView(View):
-    def get(self, request, lang):
+    def get(self, request, tr):
         if not request.user.is_authenticated:
-            return redirect(f"log-in", lang=lang)
+            return redirect(f"log-in")
         return render(request, f"account.html")
+
+
+class ChangeLanguageView(View):
+    def post(self, request, tr):
+        language = request.POST[f"language"]
+        if language not in translations:
+            return HttpResponseBadRequest()
+        request.session[f"language"] = language
+        if request.user.is_authenticated:
+            settings = request.user.settings
+            settings.language = Language.objects.get(code=language)
+            settings.save()
+        return HttpResponse()

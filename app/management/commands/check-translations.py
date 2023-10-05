@@ -43,7 +43,7 @@ class Command(BaseCommand):
         error = False
 
         python_string_regex = r'(.)"(([^"\\]|\\.)*)"'
-        template_string_regex = r'"(([^"\\]|\\.)*)"\|tr:lang'
+        template_string_regex = r'tr "(([^"\\]|\\.)*)"'
 
         print("\nChecking new for strings in the code:\n")
         for path in list(Path("app/views").rglob("*.py")) + [Path("app/forms.py")]:

@@ -1,4 +1,6 @@
 from django.conf import settings
+from app.models import Language
+from django.middleware.csrf import get_token
 
 
 def globals(request):
@@ -7,5 +9,6 @@ def globals(request):
         "SITE_HOST": request.get_host(),
         "SITE_URL": request.build_absolute_uri("/"),
         "SITE_DESCRIPTION": settings.SITE_DESCRIPTION,
-        "lang": request.path[1:3],
+        "LANGUAGES": Language.objects.all(),
+        "CSRF_TOKEN": get_token(request),
     }

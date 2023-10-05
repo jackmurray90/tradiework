@@ -4,9 +4,9 @@ from app.models import Language, String
 
 
 class AdminLanguageView(View):
-    def get(self, request, lang):
+    def get(self, request, tr):
         if not request.user.is_authenticated or not request.user.is_superuser:
-            return redirect(f"log-in", lang=lang)
+            return redirect(f"log-in")
         strings = []
         for string in String.objects.filter(language__code=f"en").all():
             languages = []
@@ -21,9 +21,9 @@ class AdminLanguageView(View):
             strings.append(languages)
         return render(request, f"admin/languages.html", {f"strings": strings})
 
-    def post(self, request, lang):
+    def post(self, request, tr):
         if not request.user.is_authenticated or not request.user.is_superuser:
-            return redirect(f"log-in", lang=lang)
+            return redirect(f"log-in")
         for string in String.objects.filter(language__code=f"en").all():
             for language in Language.objects.all():
                 english = string.english
@@ -37,4 +37,4 @@ class AdminLanguageView(View):
                     String.objects.create(language=language, english=english, translation=translation, in_use=in_use)
         if request.POST.get(f"purge") == f"true":
             String.objects.filter(in_use=False).delete()
-        return redirect(f"admin-language", lang=lang)
+        return redirect(f"admin-language")

@@ -7,13 +7,13 @@
     <a class="title" href="{{ SITE_URL }}">{{ SITE_TITLE }}</a>
   </div>
   <ul>
-    <li><a href="{% url "concept" lang=lang %}">{{ "Concept"|tr:lang }}</a></li>
+    <li><a href="{% url "concept" %}">{% tr "Concept" %}</a></li>
     {% if user.is_authenticated %}
-      <li><a href="{% url "account" lang=lang %}">{{ "Account"|tr:lang }}</a></li>
-      <li><a href="{% url "log-out" lang=lang %}">{{ "Log out"|tr:lang }}</a></li>
+      <li><a href="{% url "account" %}">{% tr "Account" %}</a></li>
+      <li><a href="{% url "log-out" %}">{% tr "Log out" %}</a></li>
     {% else %}
-      <li><a href="{% url "sign-up" lang=lang %}">{{ "Sign up"|tr:lang }}</a></li>
-      <li><a href="{% url "log-in" lang=lang %}">{{ "Log in"|tr:lang }}</a></li>
+      <li><a href="{% url "sign-up" %}">{% tr "Sign up" %}</a></li>
+      <li><a href="{% url "log-in" %}">{% tr "Log in" %}</a></li>
     {% endif %}
     <li class="hamburger">
       <a href="javascript:void(0);" onclick="toggleNavbarHamburger()">
