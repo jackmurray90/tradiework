@@ -18,7 +18,15 @@
     </p>
   {% endif %}
   {% for element in form.elements %}
-    {% if element.type == "text" %}
+    {% if element.type == "hidden" %}
+      <input
+        type="hidden"
+        name="{{ element.name }}"
+        {% if element.value is not None %}
+          value="{{ element.value }}"
+        {% endif %}
+      >
+    {% elif element.type == "text" %}
       <div class="mui-textfield mui-textfield--float-label">
         <input
           type="text"

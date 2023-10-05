@@ -120,6 +120,13 @@ class IntegerField(Field):
                 return tr("%s must be an integer.") % tr(self.label)
 
 
+class HiddenField(Field):
+    type = f"hidden"
+
+    def translate(self):
+        pass
+
+
 class SubmitButton(Element):
     type = f"submit-button"
 
