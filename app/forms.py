@@ -166,7 +166,7 @@ class SubmitButton(Element):
 class Form:
     # Reserved field names
     # request, title, elements, is_valid, error
-    def __init__(self, request, action=None, initial_values=None):
+    def __init__(self, request, action=None, initial_values=None, ignore_post=False):
         tr = lambda s: app_tr(s, request.session[f"language"])
         self.form_id = random_128_bit_string()
         self.request = request
@@ -180,7 +180,7 @@ class Form:
                 if isinstance(element, FileField):
                     self.enctype = f"multipart/form-data"
                 element.set_name(name)
-                if request.POST:
+                if request.POST and not ignore_post:
                     if isinstance(element, FileField):
                         value = request.FILES.get(name)
                     else:
@@ -196,7 +196,7 @@ class Form:
                     self.__dict__[name] = value
             element.translate(tr)
             self.elements.append(element)
-        if request.POST:
+        if request.POST and not ignore_post:
             self.validate(tr)
 
     def get_elements(self):
