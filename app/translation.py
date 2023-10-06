@@ -43,6 +43,9 @@ translations = {
         "I'm not a big fan of modern single-page applications, frameworks like React, and Angular, I think they're way too complicated for small startups.": "I'm not a big fan of modern single-page applications, frameworks like React, and Angular, I think they're way too complicated for small startups.",
         "So I created this boilerplate. The code can be found at": "So I created this boilerplate. The code can be found at",
         "I've also added support for multiple languages, a script that automatically translates untranslated strings using Google Translate, and an interface for modifying the translated strings.": "I've also added support for multiple languages, a script that automatically translates untranslated strings using Google Translate, and an interface for modifying the translated strings.",
+        "Must selection an option": "Must selection an option",
+        "Invalid selection": "Invalid selection",
+        "Please select an option": "Please select an option",
     },
     "de": {
         "Log me in": "Melde mich an",
@@ -88,6 +91,9 @@ translations = {
         "I'm not a big fan of modern single-page applications, frameworks like React, and Angular, I think they're way too complicated for small startups.": "Ich bin kein großer Fan von modernen Single-Page-Anwendungen, Frameworks wie React und Angular, ich denke, sie sind viel zu kompliziert für kleine Startups.",
         "So I created this boilerplate. The code can be found at": "Also habe ich dieses Boilerplate erstellt. Den Code finden Sie unter",
         "I've also added support for multiple languages, a script that automatically translates untranslated strings using Google Translate, and an interface for modifying the translated strings.": "Ich habe außerdem Unterstützung für mehrere Sprachen, ein Skript, das nicht übersetzte Zeichenfolgen mithilfe von Google Translate automatisch übersetzt, und eine Schnittstelle zum Ändern der übersetzten Zeichenfolgen hinzugefügt.",
+        "Must selection an option": "Es muss eine Option ausgewählt werden",
+        "Invalid selection": "Ungültige Auswahl",
+        "Please select an option": "Bitte wähle eine Option",
     },
 }
 

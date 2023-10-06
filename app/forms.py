@@ -170,7 +170,7 @@ class Form:
         tr = lambda s: app_tr(s, request.session[f"language"])
         self.form_id = random_128_bit_string()
         self.request = request
-        self.title = tr(self.__class__.__title__) if hasattr(self.__class__, "__title__") else None
+        self.title = tr(self.__class__.__title__) if hasattr(self.__class__, f"__title__") else None
         self.action = action
         self.elements = []
         self.is_valid = bool(request.POST)
