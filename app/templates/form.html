@@ -11,7 +11,9 @@
   {% endif %}
 >
   {% csrf_token %}
-  <legend>{{ form.title }}</legend>
+  {% if form.title %}
+    <legend>{{ form.title }}</legend>
+  {% endif %}
   {% if form.error %}
     <p class="mui--text-danger">
       {{ form.error }}
