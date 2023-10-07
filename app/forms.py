@@ -105,8 +105,11 @@ class IntegerField(Field):
         self.required = required
 
     def validate(self, tr):
-        if self.required and not self.value:
-            return tr(self.IS_REQUIRED) % tr(self.label)
+        if not self.value:
+            if self.required:
+                return tr(self.IS_REQUIRED) % tr(self.label)
+            else:
+                return None
         try:
             if int(self.value) > 0:
                 is_positive = True
