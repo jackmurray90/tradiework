@@ -2,6 +2,7 @@ from django.utils.safestring import mark_safe
 from django.template import loader
 from app.translation import tr as app_tr
 from app.util import random_128_bit_string
+from datetime import datetime
 from copy import copy
 
 
