@@ -9,6 +9,9 @@
   {% if form.enctype %}
     enctype="{{ form.enctype }}"
   {% endif %}
+  {% if form.__inline__ %}
+    style="display: inline-block"
+  {% endif %}
 >
   {% csrf_token %}
   {% if form.title %}
