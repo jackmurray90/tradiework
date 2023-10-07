@@ -55,13 +55,19 @@ class PasswordField(Field):
 class TextField(Field):
     type = f"textarea"
 
-    def __init__(self, label, required=True):
+    def __init__(self, label, placeholder=None, required=True):
         self.label = label
         self.required = required
+        self.placeholder = placeholder
 
     def validate(self, tr):
         if self.required and not self.value:
             return tr(self.IS_REQUIRED) % tr(self.label)
+
+    def translate(self, tr):
+        self.label = tr(self.label)
+        if self.placeholder:
+            self.placeholder = tr(self.placeholder)
 
 
 class FileField(Field):

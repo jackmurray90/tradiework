@@ -96,6 +96,9 @@
           {% if element.required %}
             required
           {% endif %}
+          {% if element.placeholder %}
+            placeholder="{{ element.placeholder }}"
+          {% endif %}
         >{% if element.value %}{{ element.value }}{% endif %}</textarea>
         <label>{{ element.label }}</label>
         {% if element.error %}
