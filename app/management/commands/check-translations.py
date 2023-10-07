@@ -46,7 +46,7 @@ class Command(BaseCommand):
         template_string_regex = r'tr "(([^"\\]|\\.)*)"'
 
         print("\nChecking new for strings in the code:\n")
-        for path in list(Path("app/views").rglob("*.py")) + [Path("app/forms.py")]:
+        for path in list(Path("app/views").rglob("*.py")) + [Path("app/forms.py"), Path("app/models.py")]:
             if path.is_file():
                 with open(path, "r") as f:
                     text = f.read()
