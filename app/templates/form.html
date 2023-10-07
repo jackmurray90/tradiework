@@ -87,7 +87,7 @@
         {% endif %}
       </div>
     {% elif element.type == "textarea" %}
-      <div class="mui-textfield mui-textfield--float-label">
+      <div class="mui-textfield {% if not element.placeholder %}mui-textfield--float-label{% endif %}">
         <textarea
           name="{{ element.name }}"
           {% if element.max_length %}
