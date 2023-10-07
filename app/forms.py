@@ -159,6 +159,24 @@ class SelectField(Field):
         self.choices = [(value, tr(label)) for value, label in self.choices]
 
 
+class DateTimeField(Field):
+    type = f"datetime"
+
+    def __init__(self, label, required=True):
+        self.label = label
+        self.required = required
+
+    def validate(self, tr):
+        if not self.value and self.required:
+            return tr("Must select a time")
+        if not self.value:
+            return None
+        try:
+            datetime.strptime(self.value, f"%Y-%m-%d %H:%M")
+        except:
+            return tr("Invalid time")
+
+
 class SubmitButton(Element):
     type = f"submit-button"
 

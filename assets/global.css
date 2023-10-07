@@ -17,3 +17,6 @@ html, body {
 .filefield input[type="file"] {
   display: none;
 }
+.datetime input[readonly] {
+  cursor: pointer;
+}

@@ -28,6 +28,26 @@
           value="{{ element.value }}"
         {% endif %}
       >
+    {% elif element.type == "datetime" %}
+      <div class="datetime mui-textfield mui-textfield--float-label">
+        <input id="datetime-{{ form.form_id }}-{{ element.name }}" type="text" name="{{ element.name }}" value="{% if element.value %}{{ element.value }}{% endif %}">
+        <label>{{ element.label }}</label>
+        {% if element.error %}
+          <p class="mui--text-danger">{{ element.error }}</p>
+        {% endif %}
+        <script>
+          flatpickr("#datetime-{{ form.form_id }}-{{ element.name }}", {
+            {% if element.value %}
+              defaultDate: "{{ element.value }}",
+            {% endif %}
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            altInput: true,
+            altFormat: "F j, Y H:i",
+            minDate: "today",
+          });
+        </script>
+      </div>
     {% elif element.type == "text" %}
       <div class="mui-textfield mui-textfield--float-label">
         <input
