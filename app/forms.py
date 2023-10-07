@@ -199,6 +199,7 @@ class Form:
         self.form_id = random_128_bit_string()
         self.request = request
         self.title = tr(self.__class__.__title__) if hasattr(self.__class__, f"__title__") else None
+        self.inline = self.__class__.__inline__ if hasattr(self.__class__, f"__inline__") else False
         self.action = action
         self.elements = []
         self.is_valid = bool(request.POST)
