@@ -10,7 +10,9 @@ def with_arg(template, arg):
 
 @register.simple_tag(takes_context=True)
 def tr(context, string, *args):
-    language = context["request"].session["language"]
+    language = context.get("language")
+    if not language:
+        language = context["request"].session["language"]
     if args:
         return app_tr(string, language) % args
     else:

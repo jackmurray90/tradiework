@@ -1,5 +1,0 @@
-Welcome to Django MUI!
-
-Please verify your email and finish sign up by visiting the following URL:
-
-{{ url }}

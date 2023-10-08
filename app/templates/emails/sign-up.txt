@@ -1,0 +1,7 @@
+{% load translation %}
+
+{% tr "Welcome to Django MUI!" %}
+
+{% tr "Please verify your email and finish sign up by visiting the following URL:" %}
+
+{{ url }}

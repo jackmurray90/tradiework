@@ -3,13 +3,11 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import login
 from django.contrib.auth.models import User
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import get_template
-from django.urls import reverse
-from django.conf import settings
 from app.util import random_128_bit_string, update_user_lock
 from app.models import Language, Settings, SignUp, is_valid_username
 from app import forms
+from app.emails import send_sign_up_email
+
 
 USER_ALREADY_EXISTS = "A user with that email address already exists."
 INVALID_CODE = "Invalid verification code."
@@ -63,20 +61,8 @@ class SignUpView(View):
             expiry=datetime.now(timezone.utc) + timedelta(days=1),
         )
 
-        # Generate the email
-        lang = request.session[f"language"]
-        plaintext = get_template(f"emails/sign-up-{lang}.txt")
-        html = get_template(f"emails/sign-up-{lang}.html")
-        subject = tr("Welcome to %s") % settings.SITE_TITLE
-        from_email = f"no-reply@{request.get_host()}"
-        to = sign_up.email
-        text_content = plaintext.render({f"url": request.build_absolute_uri(reverse(f"sign-up-verify", kwargs={f"code": sign_up.code}))})
-        html_content = html.render({f"url": request.build_absolute_uri(reverse(f"sign-up-verify", kwargs={f"code": sign_up.code}))})
-
-        # Create the email message with the content and send it
-        message = EmailMultiAlternatives(subject, text_content, from_email, [to])
-        message.attach_alternative(html_content, f"text/html")
-        message.send()
+        # Send the sign up email
+        send_sign_up_email(request, request.session[f"language"], sign_up.email, sign_up.code)
 
         return redirect(f"sign-up-success")
 
