@@ -28,8 +28,7 @@ class AccountView(View):
 
 
 class ChangeLanguageView(View):
-    def post(self, request, tr):
-        language = request.POST[f"language"]
+    def post(self, request, language, tr):
         if language not in translations:
             return HttpResponseBadRequest()
         request.session[f"language"] = language

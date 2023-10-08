@@ -10,7 +10,7 @@
         </button>
         <ul class="mui-dropdown__menu">
           {% for language in LANGUAGES %}
-            <li><a href="#" onclick="change_language('{% url "change-language" %}', '{{ CSRF_TOKEN }}', '{{ language.code }}'); return false;">{{ language.name }}</a></li>
+            <li><a data-post="{% url "change-language" language=language.code %}">{{ language.name }}</a></li>
           {% endfor %}
         </ul>
       </div>

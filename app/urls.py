@@ -21,7 +21,7 @@ urlpatterns = [
     path("sign-up/success", SignUpSuccessView.as_view(), name="sign-up-success"),
     path("sign-up/verify/<code>", SignUpVerifyView.as_view(), name="sign-up-verify"),
     # Change language
-    path("change-language", ChangeLanguageView.as_view(), name="change-language"),
+    path("change-language/<language>", ChangeLanguageView.as_view(), name="change-language"),
     # Static Pages
     path("concept", ConceptView.as_view(), name="concept"),
     # Accounts
