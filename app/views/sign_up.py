@@ -132,9 +132,11 @@ class SignUpVerifyView(View):
             user.set_password(form.password)
             user.save()
 
-        # Create the settings module for the user
+        # Save the language in the settings model for the user
         language = Language.objects.get(code=request.session[f"language"])
-        Settings.objects.create(user=user, language=language)
+        settings = user.settings
+        settings.language = language
+        settings.save()
 
         # Delete the SignUp object
         sign_up.delete()
