@@ -111,6 +111,7 @@ class Command(BaseCommand):
                 with open(path, "r") as f:
                     text = f.read()
                     text = text.replace("\n", " ")
+                    text = re.sub("{% comment %}.*?{% endcomment %}", " ", text)
                     text = re.sub("{{.*?}}", " ", text)
                     text = re.sub("{%.*?%}", " ", text)
                     text = re.sub("<style>.*?</style>", " ", text)
