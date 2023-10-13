@@ -28,7 +28,9 @@ class LogInView(View):
             return render(request, f"log-in.html", {f"form": form})
 
         login(request, user)
-        return redirect(path)
+        if path.startswith(f"/"):
+            return redirect(path)
+        return redirect(f"account")
 
 
 class LogOutView(View):
