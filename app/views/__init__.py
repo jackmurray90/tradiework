@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseBadRequest, HttpResponse
 from app.translation import translations
+from django.urls import reverse
 from django.views import View
 from app.models import Language
 from app.views.sign_up import (
@@ -23,7 +24,7 @@ class ConceptView(View):
 class AccountView(View):
     def get(self, request, tr):
         if not request.user.is_authenticated:
-            return redirect(f"log-in")
+            return redirect(f"log-in", path=reverse(f"account"))
         return render(request, f"account.html")
 
 

@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from app.models import Language, String
+from django.urls import reverse
 
 
 class AdminLanguageView(View):
     def get(self, request, tr):
         if not request.user.is_authenticated or not request.user.is_superuser:
-            return redirect(f"log-in")
+            return redirect(f"log-in", path=reverse(f"admin-language"))
         strings = []
         for string in String.objects.filter(language__code=f"en").all():
             languages = []
@@ -23,7 +24,7 @@ class AdminLanguageView(View):
 
     def post(self, request, tr):
         if not request.user.is_authenticated or not request.user.is_superuser:
-            return redirect(f"log-in")
+            return redirect(f"log-in", path=reverse(f"admin-language"))
         for string in String.objects.filter(language__code=f"en").all():
             for language in Language.objects.all():
                 english = string.english

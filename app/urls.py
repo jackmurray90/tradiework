@@ -15,7 +15,7 @@ urlpatterns = [
     # Landing page
     path("", ConceptView.as_view(), name="index"),
     # Sign up, log in, reset password
-    path("log-in", LogInView.as_view(), name="log-in"),
+    path("log-in<path:path>", LogInView.as_view(), name="log-in"),
     path("log-out", LogOutView.as_view(), name="log-out"),
     path("sign-up", SignUpView.as_view(), name="sign-up"),
     path("sign-up/success", SignUpSuccessView.as_view(), name="sign-up-success"),

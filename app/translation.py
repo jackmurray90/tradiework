@@ -46,6 +46,10 @@ translations = {
         "Must selection an option": "Must selection an option",
         "Invalid selection": "Invalid selection",
         "Please select an option": "Please select an option",
+        "Invalid time": "Invalid time",
+        "Please verify your email and finish sign up by visiting the following URL:": "Please verify your email and finish sign up by visiting the following URL:",
+        "Must select a time": "Must select a time",
+        "Welcome to Django MUI!": "Welcome to Django MUI!",
     },
     "de": {
         "Log me in": "Melde mich an",
@@ -94,6 +98,10 @@ translations = {
         "Must selection an option": "Es muss eine Option ausgewählt werden",
         "Invalid selection": "Ungültige Auswahl",
         "Please select an option": "Bitte wähle eine Option",
+        "Invalid time": "Ungültige Zeit",
+        "Please verify your email and finish sign up by visiting the following URL:": "Bitte bestätigen Sie Ihre E-Mail-Adresse und schließen Sie die Anmeldung ab, indem Sie die folgende URL besuchen:",
+        "Must select a time": "Es muss eine Uhrzeit ausgewählt werden",
+        "Welcome to Django MUI!": "Willkommen bei Django MUI!",
     },
 }
 

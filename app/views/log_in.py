@@ -13,11 +13,11 @@ class LogInForm(forms.Form):
 
 
 class LogInView(View):
-    def get(self, request, tr):
+    def get(self, request, tr, path):
         form = LogInForm(request)
         return render(request, f"log-in.html", {f"form": form})
 
-    def post(self, request, tr):
+    def post(self, request, tr, path):
         form = LogInForm(request)
         if not form.is_valid:
             return render(request, f"log-in.html", {f"form": form})
@@ -28,7 +28,7 @@ class LogInView(View):
             return render(request, f"log-in.html", {f"form": form})
 
         login(request, user)
-        return redirect(f"account")
+        return redirect(path)
 
 
 class LogOutView(View):
