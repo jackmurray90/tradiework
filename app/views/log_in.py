@@ -27,13 +27,19 @@ class LogInView(View):
             form.add_error(tr("Invalid email address or password."))
             return render(request, f"log-in.html", {f"form": form})
 
+        language = request.session[f"language"]
         login(request, user)
+        request.session[f"language"] = language
+
         if path.startswith(f"/"):
             return redirect(path)
+
         return redirect(f"account")
 
 
 class LogOutView(View):
     def get(self, request, tr):
+        language = request.session[f"language"]
         logout(request)
+        request.session[f"language"] = language
         return render(request, f"log-out.html")

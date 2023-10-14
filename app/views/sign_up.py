@@ -128,6 +128,8 @@ class SignUpVerifyView(View):
         sign_up.delete()
 
         # Log in the user
+        language = request.session[f"language"]
         login(request, user)
+        request.session[f"language"] = language
 
         return redirect(f"account")
