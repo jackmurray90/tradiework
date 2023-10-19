@@ -15,8 +15,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SITE_TITLE = "Django MUI"
-SITE_DESCRIPTION = "A template for bootstrapping Django projects with MUI CSS."
+SITE_TITLE = "TradieWork"
+SITE_DESCRIPTION = "A site for tradies."
 
 # Enable this and login with `gcloud auth login` to enable automatic translation.
 GOOGLE_CLOUD_PROJECT_ID = None
