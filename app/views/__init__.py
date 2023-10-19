@@ -14,6 +14,7 @@ from app.views.log_in import (
     LogOutView,
 )
 from app.views.admin import AdminLanguageView
+from app.views.tradies import TradiesView
 
 
 class ConceptView(View):

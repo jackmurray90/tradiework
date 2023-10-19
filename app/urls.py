@@ -9,11 +9,12 @@ from app.views import (
     ConceptView,
     AccountView,
     AdminLanguageView,
+    TradiesView,
 )
 
 urlpatterns = [
     # Landing page
-    path("", ConceptView.as_view(), name="index"),
+    path("", TradiesView.as_view(), name="index"),
     # Sign up, log in, reset password
     path("log-in<path:path>", LogInView.as_view(), name="log-in"),
     path("log-out", LogOutView.as_view(), name="log-out"),

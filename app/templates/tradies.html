@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load translation %}
+
+{% block content %}
+  <div class="mui-container-fluid">
+    <div class="mui-row">
+      {% for tradie in tradies %}
+        <div class="mui-col-md-3 mui-col-sm-4 mui--text-center" style="padding: 0 1em;">
+          <div class="mui-panel" style="background-color: rgb(240, 230, 220)">
+            <div class="mui--visible-xs-block">
+              <p>{{ tradie.name }}, {{ tradie.trade }}, {% tr "$%s per hour" tradie.rate %}</p>
+              <p><a href="#" class="mui-btn mui-btn--primary mui-btn--raised">{% tr "Get a quote" %}</a></p>
+            </div>
+            <div class="mui--hidden-xs">
+              <p>{{ tradie.name }}</p>
+              <p>{{ tradie.trade }}</p>
+              <p>{% tr "$%s per hour" tradie.rate %}</p>
+              <p><a href="#" class="mui-btn mui-btn--primary mui-btn--raised">{% tr "Get a quote" %}</a></p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
